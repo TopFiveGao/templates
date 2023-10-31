@@ -1,9 +1,6 @@
-import {createPinia} from 'pinia'
-import persisted from 'pinia-plugin-persistedstate'
+import {createPinia} from "pinia"
 
+const stores = createPinia()
 
-const store = createPinia()
-store.use(persisted)
-
-export * from './modules/appStore'
-export default store
+export * from './modules/app'
+export default stores
