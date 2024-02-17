@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!--360浏览器优先以webkit内核解析-->
+        <!-- 绝对路径 -->
+		<title>主页示例</title>
+
+		<link href="../../../jwxt/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+		<link href="../../../jwxt/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+
+		<link href="../../../jwxt/css/animate.min.css" rel="stylesheet">
+		<link href="../../../jwxt/css/style.min862f.css?v=4.1.0" rel="stylesheet">
+		<link href="../../../jwxt/css/plugins/iCheck/custom.css" rel="stylesheet">
+		<link href="../../../jwxt/css/plugins/chosen/chosen.css" rel="stylesheet">
+	</head>
+	<body class="gray-bg">
+			<div class="container">
+				<form method="get" class="form-horizontal m-t" id="signupForm">
+			
+					<div class="form-group">
+						<label class="col-sm-3 control-label">
+							角色名称
+						</label>
+						<div class="col-sm-8">
+							<input placeholder="角色名称" class="form-control" id="jsmc" name="jsmc" aria-required="true" aria-invalid="false" class="valid">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">
+							角色描述：
+						</label>
+	
+						<div class="col-sm-8">
+							<input placeholder="角色描述" class="form-control" id="jsms" name="jsms"  aria-required="true" aria-invalid="true" class="error">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">
+							管辖范围：
+						</label>
+	
+						<div class="col-sm-8">
+							<input placeholder="管辖范围" class="form-control" id="gxfw" name="gxfw">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">
+							审核范围：
+						</label>
+	
+						<div class="col-sm-8"><!-- multiple -->
+							<select data-placeholder="选择省份" id="city" class="chosen-select"  style="width:100%;" tabindex="4">
+	                                    <option value="">请选择省份</option>
+	                                    <option value="110000" hassubinfo="true">北京</option>
+	                                    <option value="120000" hassubinfo="true">天津</option>
+	                                    <option value="130000" hassubinfo="true">河北省</option>
+	                                    <option value="140000" hassubinfo="true">山西省</option>
+	                                    <option value="150000" hassubinfo="true">内蒙古自治区</option>
+	                                    <option value="210000" hassubinfo="true">辽宁省</option>
+	                                    <option value="220000" hassubinfo="true">吉林省</option>
+	                                    <option value="230000" hassubinfo="true">黑龙江省</option>
+	                                    <option value="310000" hassubinfo="true">上海</option>
+	                                    <option value="320000" hassubinfo="true">江苏省</option>
+	                                    <option value="330000" hassubinfo="true">浙江省</option>
+	                                    <option value="340000" hassubinfo="true">安徽省</option>
+	                                    <option value="350000" hassubinfo="true">福建省</option>
+	                                    <option value="360000" hassubinfo="true">江西省</option>
+	                                    <option value="370000" hassubinfo="true">山东省</option>
+	                                    <option value="410000" hassubinfo="true">河南省</option>
+	                                    <option value="420000" hassubinfo="true">湖北省</option>
+	                                    <option value="430000" hassubinfo="true">湖南省</option>
+	                                    <option value="440000" hassubinfo="true">广东省</option>
+	                                    <option value="450000" hassubinfo="true">广西壮族自治区</option>
+	                                    <option value="460000" hassubinfo="true">海南省</option>
+	                                    <option value="500000" hassubinfo="true">重庆</option>
+	                                    <option value="510000" hassubinfo="true">四川省</option>
+	                                    <option value="520000" hassubinfo="true">贵州省</option>
+	                                    <option value="530000" hassubinfo="true">云南省</option>
+	                                    <option value="540000" hassubinfo="true">西藏自治区</option>
+	                                    <option value="610000" hassubinfo="true">陕西省</option>
+	                                    <option value="620000" hassubinfo="true">甘肃省</option>
+	                                    <option value="630000" hassubinfo="true">青海省</option>
+	                                    <option value="640000" hassubinfo="true">宁夏回族自治区</option>
+	                                    <option value="650000" hassubinfo="true">新疆维吾尔自治区</option>
+	                                    <option value="710000" hassubinfo="true">台湾省</option>
+	                                    <option value="810000" hassubinfo="true">香港特别行政区</option>
+	                                    <option value="820000" hassubinfo="true">澳门特别行政区</option>
+	                                    <option value="990000" hassubinfo="true">海外</option>
+	                                </select>
+	                                    
+						</div>
+					</div>
+					<div class="form-group" align="center">
+						<button class="btn btn-primary active" type="submit" id="submit">
+							新增
+						</button>
+						&nbsp;&nbsp;&nbsp;
+						<button class="btn btn-primary active" type="button"
+							onclick="mclose();">
+							关 闭
+						</button>
+					</div>
+				</form>
+			</div>
+			<script
+				src="../../../jwxt/js/jquery.min.js?v=2.1.4"></script>
+			<script
+				src="../../../jwxt/js/bootstrap.min.js?v=3.3.6"></script>
+			<script
+				src="../../../jwxt/js/plugins/layer/layer.min.js"></script>
+			<script
+				src="../../../jwxt/js/content.min.js"></script>
+			<script
+				src="../../../jwxt/js/plugins/iCheck/icheck.min.js"></script>
+				    <script src="../../../jwxt/js/plugins/validate/jquery.validate.min.js"></script>
+				        <script src="../../../jwxt/js/plugins/validate/messages_zh.min.js"></script>
+				 <script src="../../../jwxt/js/plugins/chosen/chosen.jquery.js"></script>
+				  
+				
+	   
+	
+		</body>
+		<script>
+		    function mclose(){
+		        var index = window.parent.parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+		    	parent.parent.layer.close(index); //再执行关闭 
+		    }
+		   
+		</script>
+		<script>
+		$.validator.setDefaults({
+		    highlight: function(e) {
+		        $(e).closest(".form-group").removeClass("has-success").addClass("has-error")
+		    },
+		    success: function(e) {
+		        e.closest(".form-group").removeClass("has-error").addClass("has-success")
+		    },
+		    errorElement: "span",
+		    errorPlacement: function(e, r) {
+		        e.appendTo(r.is(":radio") || r.is(":checkbox") ? r.parent().parent().parent() : r.parent())
+		    },
+		    errorClass: "help-block m-b-none",
+		    validClass: "help-block m-b-none"
+		}),
+	$().ready(function() {
+	  //  $("#commentForm").validate();
+	    var e = "<i class='fa fa-times-circle'></i> ";
+	    $("#signupForm").validate({
+	        rules: {
+	            jsmc: "required",
+	            jsms: "required",
+	            gxfw: {
+	                required: !0,
+	                minlength: 5
+	            }
+	        },
+	        messages: {
+	            jsmc: e + "监所名称必填！",
+	            jsms: e + "描述必填！",
+	            gxfw: {
+	                required: e + "管辖范围必填！",
+	                minlength: e + "长度超过5！"
+	            }
+	         }
+	        });
+	        
+	        var config = {".chosen-select":{}
+	        ,".chosen-select-deselect":{allow_single_deselect:!0}
+	        , ".chosen-select-no-single":{disable_search_threshold:10}
+	        , ".chosen-select-no-results":{no_results_text:"Oops, nothing found!"}
+	        , ".chosen-select-width":{width:"95%"}};
+			for (var selector in config) {
+				$(selector).chosen(config[selector] );
+			}
+			$("#city").chosen({
+			no_results_text : "未找到此选项!"
+			}); 
+	
+	    });
+	
+		</script>
+</html>

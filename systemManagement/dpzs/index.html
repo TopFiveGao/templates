@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Expires" content="0">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta name="renderer" content="webkit">
+
+		<!-- 禁止页面放大缩小 -->
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<title>成都中和职中大屏展示系统</title>
+		<link href="../../../jwxt/css/bootstrap.min14ed.css" rel="stylesheet">
+		<link href="../../../jwxt/css/font-awesome.min93e3.css" rel="stylesheet">
+		<link href="../../../jwxt/css/style.min862f.css" rel="stylesheet">
+		<link href="../../../jwxt/css/animate.min.css" rel="stylesheet">
+		<link href="../../../jwxt/systemManagement/dpzs/css/index.css" rel="stylesheet">
+		<link href="../../../jwxt/systemManagement/dpzs/css/echarts-map.css" rel="stylesheet" />
+		<style>
+			@keyframes moveAniHor {
+				0% {
+					left: 100%;
+				}
+
+				50% {
+					left: 0;
+				}
+
+				100% {
+					left: -100%;
+				}
+			}
+
+
+			.big-data-down-center-one {
+				height: 50%;
+				padding: 0 7.5px 15px;
+			}
+
+			.big-data-down-center-one-content {
+				height: 100%;
+				position: relative;
+			}
+
+			.fixed-top,
+			.fixed-right,
+			.fixed-bottom,
+			.fixed-left {
+				position: absolute;
+				width: 100px;
+				height: 100px;
+				display: flex;
+				cursor: pointer;
+			}
+
+			.circle {
+				position: absolute;
+				border-radius: 50%;
+				background: rgba(0, 0, 0, 0.01);
+				z-index: 10;
+			}
+
+			.text-box {
+				position: relative;
+				z-index: 11;
+				color: #c0d1f2;
+				margin: auto;
+				text-align: center;
+				font-size: 12px;
+			}
+
+			i {
+				font-size: 28px;
+				margin-bottom: 10px;
+			}
+
+			.fixed-top {
+				left: 20px;
+				top: 20px;
+			}
+
+			.fixed-right {
+				right: 20px;
+				top: 20px;
+			}
+
+			.fixed-bottom {
+				right: 20px;
+				bottom: 20px;
+			}
+
+			.fixed-left {
+				left: 20px;
+				bottom: 20px;
+			}
+
+			.circle:nth-of-type(1) {
+				width: 100px;
+				height: 95px;
+				animation: turnAround 6s infinite linear;
+				box-shadow: 0 0 1px 0 #869fe4, inset 0 0 10px 0 #869fe4;
+			}
+
+			.circle:nth-of-type(2) {
+				width: 95px;
+				height: 100px;
+				animation: turnAround 10s infinite linear;
+				box-shadow: 0 0 1px 0 #3397f2, inset 0 0 10px 0 #3397f2;
+			}
+
+			.circle:nth-of-type(3) {
+				width: 110px;
+				height: 100px;
+				animation: turnAround 5s infinite linear;
+				box-shadow: 0 0 1px 0 #3eaadc, inset 0 0 10px 0 #3eaadc;
+			}
+
+			.circle:nth-of-type(4) {
+				width: 100px;
+				height: 110px;
+				animation: turnAround 15s infinite linear;
+				box-shadow: 0 0 1px 0 #09f, inset 0 0 10px 0 #09f;
+			}
+
+			@keyframes turnAround {
+				100% {
+					transform: rotate(360deg);
+				}
+			}
+
+			.text {
+				font-weight: 700px !important;
+				font-size: 13px;
+			}
+
+			.diweid1 {
+				position: absolute;
+				top: 0px;
+				left: 0px;
+			}
+
+			.diweid2 {
+				position: absolute;
+				top: 0px;
+				left: 130px;
+			}
+
+			.diweid3 {
+				position: absolute;
+				top: 0px;
+				left: 260px;
+			}
+
+			.diweid4 {
+				position: absolute;
+				top: 120px;
+				left: 0px;
+			}
+
+			.diweid5 {
+				position: absolute;
+				top: 120px;
+				left: 130px;
+			}
+
+			.diweid6 {
+				position: absolute;
+				top: 120px;
+				left: 260px;
+			}
+
+			.jaoshizongshu {
+				margin-bottom: 16px;
+				color: #c0d1f2;
+
+			}
+
+			.qiyue {
+				font-size: 13px;
+				padding: 5px 20px;
+			}
+
+			.shepingjia {
+				background-color: darkslategray;
+				color: #c0d1f2;
+				text-align: center;
+				padding: 110px 0px;
+				margin-top: 10px;
+			}
+
+			.imagen1 {
+				cursor: pointer;
+				color: #c0d1f2;
+				text-align: center;
+				width: 210px;
+				height: 120px;
+				background: url(./images/zc2.png) no-repeat;
+				background-size: 55%;
+				background-position: bottom;
+			}
+
+			.imagen1:hover {
+				background-color: rgba(255, 255, 255, 0.2);
+			}
+
+			.imagen2 {
+				text-align: center;
+				width: 210px;
+				height: 120px;
+			}
+
+			.fontbot {
+				color: #c0d1f2;
+				font-weight: 600;
+				font-size: 16px;
+				background-color: rgba(255, 255, 255, 0.1);
+				width: calc(100% - 44px);
+				margin-left: 20px;
+				margin-top: 10px;
+				padding: 5px 0;
+			}
+
+			.fontbot2 {
+				color: #c0d1f2;
+				font-weight: 600;
+				font-size: 16px;
+				background-color: rgba(255, 255, 255, 0.1);
+				width: calc(100% - 44px);
+				margin-left: 12px;
+				margin-top: 10px;
+				padding: 5px 0;
+			}
+
+			.titleul>ul {
+				list-style-type: none;
+			}
+
+			.titleul>ul>li {
+				color: rgb(246, 163, 14);
+				padding: 10px;
+				border-bottom: rgba(255, 255, 255, 0.2) 1px dashed;
+				display: flex;
+				justify-content: space-between;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="image-titlie">
+
+			<!-- 头部标题 -->
+			<div class="top-image">
+				<div>
+					<div class="com" style="width: 410px; padding-top: 60px; margin-left: 20px;">
+						<div id="date" style="margin: 10px;">
+							<div
+								style="display:inline-block;color: #04CDFB;text-align: right;width: 45%;font-size: 14px;">
+								0000年0月0日</div>
+							<div
+								style="display:inline-block;color: #F6EE0A;margin-left: 20px;font-size: 16px;font-weight: bolder;">
+								15:22:02</div>
+						</div>
+						<div
+							style="position: relative; width: 100%;height: 20px; color: #fff;font-size: 16px;overflow: hidden;white-space: nowrap;">
+							<div
+								style="position:absolute;left: 100%;top: 0;white-space: nowrap;animation: moveAniHor 30s linear infinite normal;">
+								今天：阴 25°~38°C 无持续风向&gt;3级</div>
+						</div>
+					</div>
+				</div>
+				<div class="font-ctenot">集成管控大屏展示</div>
+				<div style="width: 410px;"></div>
+			</div>
+
+			<!-- 底部的区域 -->
+			<div class="bottom-div">
+				<!-- 左侧 -->
+				<div class="left">
+					<div class="left-div1">
+						<div class="title-base">
+							<div class="title-font">学校概况</div>
+						</div>
+						<div
+							style="display: flex; margin:5px; padding: 6px;background-image: linear-gradient(to right, rgba(123, 245, 251, 0.3) , rgba(213, 251, 248, 0.3));">
+							<div class="iconcolor iconr1"><i class="fa fa-graduation-cap"></i></div>
+							<div>
+								<div style="color: #009ee6;">在校学生（人）</div>
+								<div class="counter" style="color: aquamarine; font-size: 20px; font-weight: 600;">3463
+								</div>
+							</div>
+						</div>
+						<div
+							style="display: flex; margin:5px; padding: 6px;background-image: linear-gradient(to right, rgba(251, 167, 199, 0.2) , rgba(251, 236, 242, 0.3));">
+							<div class="iconcolor iconr2"><i class="fa fa-user"></i></div>
+							<div>
+								<div style="color: #009ee6;">教职工数（人）</div>
+								<div class="counter" style="color: aquamarine; font-size: 20px; font-weight: 600;">246
+								</div>
+							</div>
+						</div>
+						<div
+							style="display: flex; margin:5px; padding: 6px;background-image: linear-gradient(to right, rgba(171, 197, 251, 0.3) , rgba(222, 222, 251, 0.3));">
+							<div class="iconcolor iconr3"><i class="fa fa-group"></i></div>
+							<div>
+								<div style="color: #009ee6;">班级数量（个）</div>
+								<div class="counter" style="color: aquamarine; font-size: 20px; font-weight: 600;">564
+								</div>
+							</div>
+						</div>
+						<div
+							style="display: flex; margin:5px; padding: 6px;background-image: linear-gradient(to right, rgba(251, 214, 171, 0.3) , rgba(251, 239, 236, 0.3));">
+							<div class="iconcolor iconr4"><i class="fa fa-sitemap"></i></div>
+							<div>
+								<div style="color: #009ee6;">专业数量（个）</div>
+								<div class="counter" style="color: aquamarine; font-size: 20px; font-weight: 600;">47
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="left-div1">
+						<div class="title-base">
+							<div class="title-font" name="bedyx-1">迎新 &nbsp;| &nbsp;</div>
+							<div class="title-font" name="bedyx-2">教务 &nbsp;| &nbsp;</div>
+							<div class="title-font" name="bedyx-3">德育</div>
+						</div>
+
+
+						<div class="bedyx bedyx-1" style="height: 240px;">
+							<div id="main" style="height: 100%;"></div>
+						</div>
+						<div class="bedyx bedyx-2 mainxz-9">
+							<div style="width: 420px; display: flex;flex-wrap: wrap;">
+								<div class="imagen1">
+									<div style="">23个专业</div>
+									<div style="margin-top: 60px; color: #00FFE3; font-weight: 600; font-size: 16px;">
+										2019级</div>
+								</div>
+								<div class="imagen1">
+									<div style="">12个专业</div>
+									<div style="margin-top: 60px; color: #00FFE3; font-weight: 600; font-size: 16px;">
+										2020级</div>
+								</div>
+								<div class="imagen1">
+									<div style="">7个专业</div>
+									<div style="margin-top: 60px; color: #00FFE3; font-weight: 600; font-size: 16px;">
+										2021级</div>
+								</div>
+								<div class="imagen1">
+									<div style="">9个专业</div>
+									<div style="margin-top: 60px; color: #00FFE3; font-weight: 600; font-size: 16px;">
+										2022级</div>
+								</div>
+							</div>
+						</div>
+						<div class="bedyx bedyx-3 mainxz-9" style="height: 240px;">
+							<div id="main2" style="height: 240px; width: 420px;"></div>
+						</div>
+
+
+					</div>
+					<div class="left-div1">
+						<div class="title-base">
+							<div class="title-font" name="bedoo-1">教师数据 &nbsp;| &nbsp;</div>
+							<div class="title-font" name="bedoo-2">团委 &nbsp;| &nbsp;</div>
+							<div class="title-font" name="bedoo-3">学生</div>
+						</div>
+						<div class="bedoo bedoo-1" style="height: 240px; color: #c0d1f2;">
+							<div class="jaoshizongshu">教师总数：<span class="counter"
+									style="font-size: 20px; font-weight: 700; color: #00FFE3;">234</span> 人</div>
+							<div class="qiyue"><i class="fa fa-graduation-cap"></i> 正高级教师 <span
+									style="font-size: 13px; font-weight:700; color: #43bdf0;">1</span> 人，高级教师 <span
+									style="font-size: 13px; font-weight:700; color: #43bdf0;">71</span> 人</div>
+							<div class="qiyue"><i class="fa fa-graduation-cap"></i> 四川省中小学名校长 <span
+									style="font-size: 13px; font-weight:700; color: #43bdf0;">1</span> 人</div>
+							<div class="qiyue"><i class="fa fa-graduation-cap"></i> 四川省第一批中小学名校长工作室领衔人 <span
+									style="font-size: 13px; font-weight:700; color: #43bdf0;">1</span> 人</div>
+							<div class="qiyue"><i class="fa fa-graduation-cap"></i> 其他优秀教师 <span
+									style="font-size: 13px; font-weight:700; color: #43bdf0;">100</span> 余人</div>
+						</div>
+						<div class="bedoo bedoo-2 mainxz-9" style="height: 240px; color: #c0d1f2;">
+							<!-- <div class="jaoshizongshu">教师总数：<span class="counter" style="font-size: 20px; font-weight: 700; color: #00FFE3;">234</span> 人</div> -->
+							<div class="qiyue"><i class="fa fa-users"></i> 现有团员 <span
+									style="font-size: 13px; font-weight:700; color: #43bdf0;">1500</span> 人</div>
+							<div class="qiyue"><i class="fa fa-user-plus"></i> 本年新增团员 <span
+									style="font-size: 13px; font-weight:700; color: #43bdf0;">345</span> 人</div>
+							<div class="qiyue"><i class="fa fa-coffee"></i> 累计开展活动 <span
+									style="font-size: 13px; font-weight:700; color: #43bdf0;">203</span> 次</div>
+							<div class="qiyue"><i class="fa fa-plus-square"></i> 本年新增活动 <span
+									style="font-size: 13px; font-weight:700; color: #43bdf0;">123</span> 次</div>
+						</div>
+						<div class="bedoo bedoo-3 mainxz-9" style="height: 240px; color: #c0d1f2;">
+							<div class="jaoshizongshu">现有学生总数：<span class="counter"
+									style="font-size: 20px; font-weight: 700; color: #00FFE3;">3456</span> 人</div>
+							<div class="qiyue"><i class="fa fa-graduation-cap"></i> 其中，住校生 <span
+									style="font-size: 13px; font-weight:700; color: #43bdf0;">2341</span> 人，走读生 <span
+									style="font-size: 13px; font-weight:700; color: #43bdf0;">1559</span> 人</div>
+							<div class="qiyue"><i class="fa fa-street-view"></i> 大专部 <span
+									style="font-size: 13px; font-weight:700; color: #43bdf0;">234</span> 人</div>
+							<div class="qiyue"><i class="fa fa-plane"></i> 国际部 <span
+									style="font-size: 13px; font-weight:700; color: #43bdf0;">244</span> 人</div>
+							<div class="qiyue"><i class="fa fa-child"></i> 本科部 <span
+									style="font-size: 13px; font-weight:700; color: #43bdf0;">342</span> 人</div>
+							<div class="qiyue"><i class="fa fa-paw"></i> 体育部 <span
+									style="font-size: 13px; font-weight:700; color: #43bdf0;">234</span> 人</div>
+						</div>
+
+
+					</div>
+				</div>
+				<!-- 中间 -->
+				<div class="center">
+
+					<div class="center-top">
+						<div
+							style="display: flex;justify-content: space-between; text-align: center; width: 800px; margin: auto;">
+							<div><span style="font-size: 20px;font-weight:600; color: #43bdf0;">访问总量</span>
+								<div style="color: rgb(246, 163, 14);"><span
+										style="font-size: 20px;font-weight:600;">324567</span>人次</div>
+							</div>
+							<div><span style="font-size: 20px;font-weight:600; color: #43bdf0;">今日访问</span>
+								<div style="color: rgb(246, 163, 14);"><span
+										style="font-size: 20px;font-weight:600;">123</span>人次</div>
+							</div>
+							<div><span style="font-size: 20px;font-weight:600; color: #43bdf0;">当前在线</span>
+								<div style="color: rgb(246, 163, 14);"><span
+										style="font-size: 20px;font-weight:600;">2</span>人</div>
+							</div>
+						</div>
+						<!-- <div style="background-color: rgba(255, 255, 255, 0.2);  height: 550px; margin-top: 5px; background: url(./images/b47f34272578f4326f639f2d955ba21.jpg) no-repeat; background-size: 100%;"></div> -->
+						<!-- <div style="background-color: rgba(255, 255, 255, 0.2);  height: 550px; margin-top: 5px; background: url(./images/509b6ff7acec4000e4a87ad625cac8c_03.png);"></div>
+						// <div style="background-color: rgba(255, 255, 255, 0.2);  height: 550px; margin-top: 5px;"></div> -->
+						<div style="height: 550px; margin-top: 5px;">
+							<div id="asdfsfsff"
+								style="height: 100%;width: 100%;-webkit-tap-highlight-color: transparent; user-select: none; position: relative;">
+							</div>
+						</div>
+					</div>
+					<div class="center-div1">
+						<div class="title-base">
+							<div class="title-font">动态信息</div>
+						</div>
+						<div class="titleul" style="width: 800px; height: 250px; margin: auto; overflow-y: hidden;"
+							id="projectList_div">
+							<ul id="projectList" class="right-bottom-body">
+								<li>
+									<div>刷卡消费</div>
+									<div>刘小军</div>
+									<div style="color: #009ee6;">2021-4-23</div>
+								</li>
+								<li>
+									<div>学生考勤</div>
+									<div>洪强</div>
+									<div style="color: #009ee6;">2021-4-23</div>
+								</li>
+								<li>
+									<div>教师考勤</div>
+									<div>罗思源</div>
+									<div style="color: #009ee6;">2021-4-23</div>
+								</li>
+								<li>
+									<div>教师考勤</div>
+									<div>王永亮</div>
+									<div style="color: #009ee6;">2021-4-23</div>
+								</li>
+								<li>
+									<div>学生考勤</div>
+									<div>胡志伟</div>
+									<div style="color: #009ee6;">2021-4-23</div>
+								</li>
+								<li>
+									<div>刷卡消费</div>
+									<div>江涛</div>
+									<div style="color: #009ee6;">2021-4-23</div>
+								</li>
+								<li>
+									<div>教师考勤</div>
+									<div>贺勇</div>
+									<div style="color: #009ee6;">2021-4-23</div>
+								</li>
+								<li>
+									<div>学生考勤</div>
+									<div>李晓峰</div>
+									<div style="color: #009ee6;">2021-4-23</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
+				<!-- 右侧 -->
+				<div class="right">
+					<div class="left-div1">
+						<div class="title-base">
+							<div class="title-font">视频监控</div>
+						</div>
+						<div>
+							<div class="shepingjia">暂无视频信号</div>
+							<!-- <div class="shepingjia">暂无视频信号</div> -->
+						</div>
+					</div>
+					<div class="left-div1">
+						<div class="title-base">
+							<div class="title-font">硬件设备数据</div>
+						</div>
+						<div style="position: absolute; height: 240px;">
+							<div class="big-data-down-center-one diweid1">
+								<div class="big-data-down-center-one-content" ref="rightChartData5">
+									<div ref="the3DEarth"></div>
+									<div class="fixed-top">
+										<div class="circle"></div>
+										<div class="circle"></div>
+										<div class="circle"></div>
+										<div class="circle"></div>
+										<div class="text-box">
+											<i class="fa fa-video-camera"
+												style="font-size: 16px; margin-bottom: 5px;"></i>
+											<div class="text">摄像头<div style="color: #00FFE3;">0</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="big-data-down-center-one diweid2">
+								<div class="big-data-down-center-one-content" ref="rightChartData5">
+									<div ref="the3DEarth"></div>
+									<div class="fixed-top">
+										<div class="circle"></div>
+										<div class="circle"></div>
+										<div class="circle"></div>
+										<div class="circle"></div>
+										<div class="text-box">
+											<i class="fa fa-sun-o" style="font-size: 16px; margin-bottom: 5px;"></i>
+											<div class="text">路灯<div style="color: #00FFE3;">0</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="big-data-down-center-one diweid3">
+								<div class="big-data-down-center-one-content" ref="rightChartData5">
+									<div ref="the3DEarth"></div>
+									<div class="fixed-top">
+										<div class="circle"></div>
+										<div class="circle"></div>
+										<div class="circle"></div>
+										<div class="circle"></div>
+										<div class="text-box">
+											<i class="fa fa-minus-square"
+												style="font-size: 16px; margin-bottom: 5px;"></i>
+											<div class="text">门禁<div style="color: #00FFE3;">0</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="big-data-down-center-one diweid4">
+								<div class="big-data-down-center-one-content" ref="rightChartData5">
+									<div ref="the3DEarth"></div>
+									<div class="fixed-top">
+										<div class="circle"></div>
+										<div class="circle"></div>
+										<div class="circle"></div>
+										<div class="circle"></div>
+										<div class="text-box">
+											<i class="fa fa-trash-o" style="font-size: 16px; margin-bottom: 5px;"></i>
+											<div class="text">智能垃圾桶<div style="color: #00FFE3;">0</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="big-data-down-center-one diweid5">
+								<div class="big-data-down-center-one-content" ref="rightChartData5">
+									<div ref="the3DEarth"></div>
+									<div class="fixed-top">
+										<div class="circle"></div>
+										<div class="circle"></div>
+										<div class="circle"></div>
+										<div class="circle"></div>
+										<div class="text-box">
+											<i class="fa fa-bolt" style="font-size: 16px; margin-bottom: 5px;"></i>
+											<div class="text">充电桩<div style="color: #00FFE3;">0</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="big-data-down-center-one diweid6">
+								<div class="big-data-down-center-one-content" ref="rightChartData5">
+									<div ref="the3DEarth"></div>
+									<div class="fixed-top">
+										<div class="circle"></div>
+										<div class="circle"></div>
+										<div class="circle"></div>
+										<div class="circle"></div>
+										<div class="text-box">
+											<i class="fa fa-cogs" style="font-size: 16px; margin-bottom: 5px;"></i>
+											<div class="text">
+												<div>正常:<span style="color: #00FFE3;">9</span></div>
+												<div>异常:<span style="color: #00FFE3;">0</span></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="left-div1">
+						<div class="title-base">
+							<div class="title-font" name="bedsj-1">标准数据库采集量 &nbsp;| &nbsp;</div>
+							<div class="title-font" name="bedsj-2">数据总量</div>
+						</div>
+						<div class="bedsj bedsj-1" style="height: 240px;">
+							<div id="main1" style="height: 240px; width: 420px;"></div>
+						</div>
+						<div class="bedsj bedsj-2 mainxz-9"
+							style="height: 240px;width: 420px; background: url(./images/ylyx.png) no-repeat;">
+							<div style="width: 420px; display: flex;flex-wrap: wrap;">
+								<div class="imagen2">
+									<div style="margin-top: 15px; color: #43bdf0;">数据量</div>
+									<div class="fontbot">2,435,456</div>
+								</div>
+								<div class="imagen2">
+									<div style="margin-top: 15px; color: #43bdf0;">数据目录</div>
+									<div class="fontbot2">3,562</div>
+								</div>
+								<div class="imagen2">
+									<div style="margin-top: 15px; color: #43bdf0;">字典项</div>
+									<div class="fontbot">1,535</div>
+								</div>
+								<div class="imagen2">
+									<div style="margin-top: 15px; color: #43bdf0;">服务量</div>
+									<div class="fontbot2">62</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</body>
+	<script src="../../../jwxt/js/jquery.min.js?v=2.1.4"></script>
+	<script src="../../../jwxt/systemManagement/dpzs/js/moment.js"></script>
+
+	<script src="../../../jwxt/js/auto/jquery.waypoints.min.js"></script>
+	<script src="../../../jwxt/js/auto/jquery.countup.min.js"></script>
+	<script src="../../../jwxt/systemManagement/dpzs/js/echarts.min.js"></script>
+
+	<script>
+		$(document).ready(function() {
+			$(".title-font").click(appenClass)
+			tiem();
+			$('.counter').countUp();
+			dituihsebfrf();
+			mixet1();
+			mixet2();
+			mixet3();
+		})
+		var scroll0 = setInterval('autoScrollUl("#projectList_div")', 4000);
+		// 鼠标移上去取消事件
+		$("#projectList_div").hover(function() {
+			clearInterval(scroll0);
+		}, function() {
+			clearInterval(scroll0);
+			scroll0 = setInterval('autoScrollUl("#projectList_div")', 4000);
+		});
+
+		function autoScrollUl(obj) {
+			$(obj).find("ul:first").animate({
+				marginTop: "-41px"
+		 }, 1000, function() {
+				$(this).css({
+					marginTop: "0px"
+				}).find("li:first").appendTo(this); //将该行的margin值置零,然后插入到最后
+			})
+		}
+
+		function tiem() {
+			function init() {
+				$('#date div:eq(0)').html(moment());
+				$('#date div:eq(1)').html(momentdate());
+			}
+			setInterval(init, 1000);
+		}
+
+		function appenClass() {
+			var i = $(this).attr('name');
+			if (i) {
+				var e = i.substring(0, 5);
+				$('.' + e).addClass('mainxz-9');
+				$('.' + i).removeClass('mainxz-9');
+			};
+
+		}
+
+		function mixet1() {
+			let chartDom = document.getElementById('main');
+			let myChart = echarts.init(chartDom);
+			const option = {
+				grid: {
+					top: 10,
+					right: 0,
+					bottom: 20,
+					left: 30,
+				},
+				tooltip: {
+					trigger: 'axis',
+					axisPointer: {
+						type: 'shadow',
+					},
+				},
+				xAxis: {
+					data: ['金牛', '武侯', '锦江', '青羊', '龙泉', '双流'],
+					axisLine: {
+						lineStyle: {
+							color: 'rgba(22, 207, 208, 0.5)',
+							width: 1,
+						},
+					},
+					axisTick: {
+						show: false,
+					},
+					axisLabel: {
+						color: '#c0d1f2',
+					},
+				},
+				yAxis: [{
+						type: 'value',
+						axisLine: {
+							show: true,
+							lineStyle: {
+								color: 'rgba(22, 207, 208, 0.1)',
+							},
+						},
+						axisLabel: {
+							color: '#c0d1f2',
+						},
+						splitLine: {
+							show: true,
+							lineStyle: {
+								color: 'rgba(22, 207, 208, 0.3)',
+							},
+						},
+						splitArea: {
+							show: true,
+							areaStyle: {
+								color: 'rgba(22, 207, 208, 0.02)',
+							},
+						},
+						nameTextStyle: {
+							color: '#16cfd0',
+						},
+					},
+					{
+						type: 'value',
+						position: 'right',
+						axisLine: {
+							show: false,
+						},
+						axisLabel: {
+							show: true,
+							formatter: '{value}%',
+							textStyle: {
+								color: '#16cfd0',
+							},
+						},
+						splitLine: {
+							show: false,
+						},
+						axisTick: {
+							show: false,
+						},
+						splitArea: {
+							show: true,
+							areaStyle: {
+								color: 'rgba(22, 207, 208, 0.02)',
+							},
+						},
+						nameTextStyle: {
+							color: '#16cfd0',
+						},
+					},
+				],
+				series: [{
+					name: '新生来源',
+					type: 'bar',
+					barWidth: 15,
+					itemStyle: {
+						normal: {
+							color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+									offset: 0,
+									color: '#00FFE3',
+								},
+								{
+									offset: 1,
+									color: '#4693EC',
+								},
+							]),
+						},
+					},
+					data: [4.2, 3.8, 4.8, 3.5, 2.9, 2.8],
+				}, ],
+			};
+			option && myChart.setOption(option);
+		}
+
+		function mixet2() {
+			let chartDom = document.getElementById('main1');
+			let myChart = echarts.init(chartDom);
+			let option = {
+				grid: {
+					top: 10,
+					right: 10,
+					bottom: 20,
+					left: 30,
+				},
+				tooltip: {
+					trigger: 'axis',
+				},
+				xAxis: {
+					type: 'category',
+					boundaryGap: false,
+					data: ['1', '2', '3', '4', '5', '6', '7'],
+					axisLine: {
+						lineStyle: {
+							color: 'rgba(22, 207, 208, 0.1)',
+							width: 1,
+						},
+					},
+					axisTick: {
+						show: false,
+					},
+					axisLabel: {
+						interval: 0,
+						color: '#c0d1f2',
+						textStyle: {
+							fontSize: 10,
+						},
+					},
+				},
+				yAxis: [{
+					type: 'value',
+					axisLabel: {
+						color: '#c0d1f2',
+					},
+					splitLine: {
+						show: true,
+						lineStyle: {
+							color: 'rgba(22, 207, 208, 0.3)',
+						},
+					},
+					splitArea: {
+						show: true,
+						areaStyle: {
+							color: 'rgba(22, 207, 208, 0.02)',
+						},
+					},
+					nameTextStyle: {
+						color: '#16cfd0',
+					},
+				}, ],
+				series: [{
+					name: '数据量',
+					type: 'line',
+					smooth: true,
+					lineStyle: {
+						width: 0,
+					},
+					areaStyle: {
+						opacity: 0.8,
+						color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+								offset: 0,
+								color: 'rgba(128, 255, 165)',
+							},
+							{
+								offset: 1,
+								color: 'rgba(1, 191, 236)',
+							},
+						]),
+					},
+					emphasis: {
+						focus: 'series',
+					},
+					data: [140, 232, 101, 264, 90, 70, 88],
+				}, ],
+			};
+			option && myChart.setOption(option);
+		}
+
+		function mixet3() {
+			let chartDom = document.getElementById('main2');
+			let myChart = echarts.init(chartDom);
+			// color: ["#fc8104", "#25a0ea", "#1ef9f7", "#f781d3","#0cff6b"],
+			const option = {
+				legend: {
+					data: ['德育活动', '安全活动', '教师风采'],
+					textStyle: {
+						fontSize: 14, //字体大小
+						color: '#09d5fe' //字体颜色
+					}
+				},
+				grid: {
+					left: '3%',
+					right: '4%',
+					bottom: '3%',
+					containLabel: true
+				},
+				tooltip: {
+					trigger: 'axis',
+				},
+				xAxis: {
+					data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+					axisLine: {
+						lineStyle: {
+							color: 'rgba(22, 207, 208, 0.1)',
+							width: 1,
+						},
+					},
+					axisTick: {
+						show: false,
+					},
+					axisLabel: {
+						color: '#c0d1f2',
+					},
+				},
+				yAxis: [{
+					type: 'value',
+					axisLine: {
+						show: true,
+						lineStyle: {
+							color: 'rgba(22, 207, 208, 0.1)',
+						},
+					},
+					axisLabel: {
+						color: '#c0d1f2',
+					},
+					splitLine: {
+						show: true,
+						lineStyle: {
+							color: 'rgba(22, 207, 208, 0.3)',
+						},
+					},
+					splitArea: {
+						show: true,
+						areaStyle: {
+							color: 'rgba(22, 207, 208, 0.02)',
+						},
+					},
+					nameTextStyle: {
+						color: '#16cfd0',
+					},
+				}, ],
+				series: [{
+						name: '德育活动',
+						type: 'line',
+						data: [32, 43, 35, 14, 23, 43, 32, 43, 35, 14, 23, 43],
+						itemStyle: {
+							color: '#16cfd0',
+						},
+						// stack: 'Total',
+						smooth: true
+					},
+					{
+						name: '安全活动',
+						type: 'line',
+						data: [50, 85, 22, 43, 26, 34, 50, 85, 22, 43, 26, 34],
+						itemStyle: {
+							color: '#febb50',
+						},
+						// stack: 'Total',
+						smooth: true
+					},
+					{
+						name: '教师风采',
+						type: 'line',
+						data: [34, 243, 32, 56, 34, 24, 34, 243, 32, 56, 34, 24],
+						itemStyle: {
+							color: '#25a0ea',
+						},
+						// stack: 'Total',
+						smooth: true
+					},
+				],
+			};
+			option && myChart.setOption(option);
+		}
+
+
+
+
+
+
+
+
+
+		function dituihsebfrf() {
+			var chartDom = document.getElementById('asdfsfsff');
+			var myChart = echarts.init(chartDom);
+			var option;
+
+			myChart.showLoading();
+			$.get('./js/tomap.json', function(geoJson) {
+				myChart.hideLoading();
+				echarts.registerMap('HK', geoJson);
+				myChart.setOption(
+					(option = {
+						title: {
+							subtext: '中和职中',
+							subtextStyle: {
+								color: "#c0d1f2"
+							}
+						},
+						tooltip: getTooltip(),
+						
+						toolbox: {
+							show: false,
+							orient: 'vertical',
+							left: 'right',
+							top: 'center',
+							feature: {
+								dataView: {
+									readOnly: false
+								},
+								restore: {},
+								saveAsImage: {}
+							}
+						},
+						series: [{
+							name: '中和职中',
+							type: 'map',
+							map: 'HK',
+							label: {
+								show: true,
+								color: 'white',
+								fontSize: 10
+							},
+							select:{
+								itemStyle : {
+									 areaColor: 'rgba(70, 147, 236, 0.9)'
+								},
+								label:{
+									color: "#fff"
+								}
+							},
+							itemStyle: {
+								normal: {
+									borderWidth: 1, //边际线大小
+									borderColor: '#00ffff', //边界线颜色
+									areaColor: 'rgba(70, 147, 236, 0.3)' //默认区域颜色  70 147 236
+								},
+								emphasis: {
+									show: true,
+									areaColor: 'rgba(70, 147, 236, 0.9)', //鼠标滑过区域颜色
+									label: {
+										show: true,
+										textStyle: {
+											color: '#fff'
+										}
+									}
+								}
+							},
+							data: [{
+									name: '西门',
+									tem: '西门（今日进出量）',
+									value1: [{
+										text: "进",
+										value: 234
+									}, {
+										text: "出",
+										value: 230
+									}]
+								},
+								{
+									name: '教学楼1',
+									value1: [{
+										text: "班级总数",
+										value: 24
+									}, {
+										text: "学生人数",
+										value: 659
+									}]
+								},
+								{
+									name: '教学楼2',
+									value1: [{
+										text: "班级总数",
+										value: 18
+									}, {
+										text: "学生人数",
+										value: 567
+									}]
+								},
+								{
+									name: '教学楼3',
+									value1: [{
+										text: "班级总数",
+										value: 26
+									}, {
+										text: "学生人数",
+										value: 567
+									}]
+								},
+								{
+									name: '教学楼4',
+									value1: [{
+										text: "班级总数",
+										value: 15
+									}, {
+										text: "学生人数",
+										value: 246
+									}]
+								},
+								{
+									name: '教学楼5',
+									value1: [{
+										text: "班级总数",
+										value: 20
+									}, {
+										text: "学生人数",
+										value: 523
+									}]
+								},
+								{
+									name: '宿舍1',
+									value1: [{
+										text: "人数",
+										value: 503
+									}]
+								},
+								{
+									name: '宿舍2',
+									value1: [{
+										text: "人数",
+										value: 521
+									}]
+								},
+								{
+									name: '宿舍3',
+									value1: [{
+										text: "人数",
+										value: 499
+									}]
+								},
+								{
+									name: '宿舍4',
+									value1: [{
+										text: "人数",
+										value: 478
+									}]
+								}
+							]
+
+						}]
+					})
+				);
+			});
+
+			function getTooltip() {
+				return {
+					show: true,
+					padding: 0,
+					padding: 0,
+					textStyle: {
+						color: '#e9f1f5',
+					},
+					backgroundColor: 'rgba(0,0,0,0)',
+					formatter: function(params) {
+						console.log(params)
+						var tipHtml = '',
+							str = '';
+						console.log(params.data)
+						if (!params.data) return;
+						console.log(params.tem)
+						var tipsdata = params.data.value1,
+							name = params.data.tem == undefined ? params.data.name : params.data.tem;
+
+
+						for (var i = 0; i < tipsdata.length; i++) {
+							str +=
+								`<div><p class='tipdata'>${tipsdata[i].text}： </p><p class='tipvalue'>${tipsdata[i].value}</p></div>`;
+						}
+
+
+						tipHtml += "<div class='tipdiv'><div class='htmltip'><div class='city'><p class='cityname'>" +
+							name + "</p></div><div class='citytip'>" + str + "</div></div></div>";
+						return tipHtml;
+					},
+					borderWidth: 0,
+					className: 'myEchartsTips',
+					position: function(point, params, dom, rect, size) {
+						var firch = dom.firstChild;
+						if (!firch) return;
+						var height = firch.offsetHeight,
+							width = firch.offsetWidth;
+						if (params.seriesIndex == 0) {
+							var value = params.value;
+						} else {
+							var value = params.data.tipNum;
+						}
+						return [point[0] - width, point[1] - height];
+					}
+				}
+			};
+
+			option && myChart.setOption(option);
+		}
+	</script>
+</html>

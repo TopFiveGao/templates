@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>My JSP 'jsgl_add.jsp.jsp' starting page</title>
+		<link href="../../../jwxt/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+		<!-- <link href="../../../jwxt/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet"> -->
+		<link href="../../../jwxt/css/style.min862f.css?v=4.1.0" rel="stylesheet">
+		<link href="../../../jwxt/css/animate.min.css" rel="stylesheet">
+		<link href="../../../jwxt/css/latest.css" rel="stylesheet">
+		<style>
+			.note-editable{
+				min-height: 380px;
+			}
+			.imaget{
+				height: 135px;
+			}
+			
+			.warp-content{
+				width: 135px;
+				height: 135px;
+				position:fixed;
+				top: 36px;
+				opacity:0;
+			}
+			.onendwe{
+				overflow:hidden;
+			}
+			#editor—wrapper {
+			  border: 1px solid #ccc;
+			  z-index: 100; /* 按需定义 */
+			}
+			#toolbar-container { border-bottom: 1px solid #ccc; }
+			#editor-container { height: 500px; }
+			.modal-body {
+			    padding: 0px !important;
+			}
+			.w-e-bar-item{
+				padding: 0px !important;
+			}
+			.w-e-bar-item button{
+				padding: 0 7px !important;
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="modal-body">
+			<div class="panel-body">
+				<form method="post" class="form-horizontal" id="dataForm" enctype="multipart/form-data">
+					<div class="fomr-a1">
+						<div style="display: none;">
+							<input type="hidden" name="bttpdz" id="bttpdz" value="" />
+							<input type="hidden" name="mlid" id="mlid" value="" />
+							<input type="hidden" name="optid" id="optid" value="info_insert" />
+							<input type="hidden" name="fbzt" id="fbzt" value="" />
+							<input type="hidden" name="zwwb" id="zwwb" value="" />
+							<input type="hidden" name="zwhtml" id="zwhtml" value="" />
+						</div>
+						<div class="form-group">
+							<div class="col-sm-9">
+								<div class="form-group">
+									<div class="row">
+										<label class="control-label col-sm-2"><span style="color: red;">*</span> 名称：</label>
+										<div class="col-sm-10">
+											<input id="bt" name="bt" type="text" class="form-control">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="row">
+										<label class="control-label col-sm-2"><span style="color: red;">*</span> 栏目：</label>
+										<div class="col-sm-10">
+											<input id="t" name="t" type="text" readonly="readonly" class="form-control">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="row">
+										<label class="control-label col-sm-2"><span style="color: red;">*</span> 摘要：</label>
+										<div class="col-sm-10">
+											<input id="zy" name="zy" type="text" class="form-control">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-2 onendwe">
+								<img class="imaget" src="../../../jwxt/image/addimg.png" mode="scaleToFill" />
+								<input class="warp-content" type="file" onchange="fileform()" />
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-12">
+								<div id="editor—wrapper">
+								    <div id="toolbar-container"><!-- 工具栏 --></div>
+								    <div id="editor-container"><!-- 编辑器 --></div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group" align="center">
+							<button class="btn btn-success" type="submit" id="button">保 存</button>
+							&nbsp;&nbsp;&nbsp;
+							<button class="btn btn-success" type="button" onclick="mclose();">关 闭</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		
+	</body>
+	
+	<script src="../../../jwxt/js/jquery.min.js?v=2.1.4"></script>
+	<script src="../../../jwxt/js/jquery.form.js"></script>
+	<script src="../../../jwxt/js/bootstrap.min.js?v=3.3.6"></script>
+	<script src="../../../jwxt/js/common.js"></script>
+	<!-- jquery Form表单提交 -->
+	<script src="../../../jwxt/js/jquery-form.js"></script>
+	<!-- 表单验证 -->
+	<script src=" ../../../jwxt/js/plugins/validate/jquery.validate.min.js"></script> 
+	<script src="../../../jwxt/js/plugins/validate/messages_zh.min.js"></script>
+	<script src="../../../jwxt/js/plugins/validate/form-validate-extend.min.js"></script>
+	<!-- js -->
+	<script src="../../../jwxt/js/page/systemManagement/xinxi/xinxi_addf.js"></script>
+	<!-- 日期组件 -->
+	<script src="../../../jwxt/js/plugins/layer/laydate/laydate.js"></script>
+
+	<script src="../../../jwxt/js/latest.js"></script>
+	<script>
+		
+		const { createEditor, createToolbar } = window.wangEditor
+		
+		const editorConfig = {
+			MENU_CONF: {},
+		    placeholder: '开始编辑文本...',
+		    onChange(editor) {
+		      const html = editor.getHtml()
+		    }
+		}
+		editorConfig.MENU_CONF['uploadImage'] = {
+		  server: api_path+'/upload',
+		  timeout: 5 * 1000, // 5s
+		  fieldName: 'file',
+		  // meta: { token: 'xxx', a: 100 },
+		  metaWithUrl: false, // join params to url
+		  headers: { Accept: 'text/x-json' },
+		
+		  maxFileSize: 10 * 1024 * 1024, // 10M
+		
+		  base64LimitSize: 5 * 1024, // insert base64 format, if file's size less than 5kb
+		  // 上传之前触发
+		  onBeforeUpload(file) {
+		    console.log(file)
+		
+		    return file // will upload this file
+		    // return false // prevent upload
+		  },
+		  onProgress(progress) {
+		    console.log('onProgress', progress)
+		  },
+		  onSuccess(file, res) {
+		    console.log('onSuccess', file, res)
+		  },
+		  onFailed(file, res) {
+		    alert(res.message)
+		    console.log('onFailed', file, res)
+		  },
+		  onError(file, err, res) {
+		    alert(err.message)
+		    console.error('onError', file, err, res)
+		  },
+		   // customInsert(res: any, insertFn: InsertFnType) {  // TS 语法
+			customInsert(res, insertFn) {                  // JS 语法
+				// res 即服务端的返回结果
+			
+				// 从 res 中找到 url alt href ，然后插图图片
+				insertFn(api_img+res.result[0].url)
+			},
+		}
+		const editor = createEditor({
+		    selector: '#editor-container',
+		    html: '<p><br></p>',
+		    config: editorConfig,
+		    mode: 'default', // or 'simple'
+		})
+		
+		const toolbarConfig = {}
+		
+		const toolbar = createToolbar({
+		    editor,
+		    selector: '#toolbar-container',
+		    config: toolbarConfig,
+		    mode: 'default', // or 'simple'
+		})
+		
+		
+		
+		function fileform(){
+			var formData = new FormData();
+			if($(".warp-content")[0].files[0].size < 1024*1024*2){
+				formData.append("file",$(".warp-content")[0].files[0]);
+				$.ajax({
+					url : api_path+'/upload',//后台文件上传接口
+					type : 'POST',
+					data : formData,
+					processData : false,
+					contentType : false,
+					success : function(data) {
+						var opendate = JSON.parse(data);
+						$("#bttpdz").val(opendate.result[0].url);
+						$(".imaget").attr("src",api_img+opendate.result[0].url);
+					}
+				});
+			}else{
+				alert("提示 : 图片不能超过2M，请处理后重新上传")
+			}
+		}
+	</script>
+</html>

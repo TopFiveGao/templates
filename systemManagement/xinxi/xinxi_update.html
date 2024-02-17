@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>My JSP 'jsgl_add.jsp.jsp' starting page</title>
+		<link href="../../../jwxt/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+		<link href="../../../jwxt/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+		<link href="../../../jwxt/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+		<link href="../../../jwxt/css/style.min862f.css?v=4.1.0" rel="stylesheet">
+		<link href="../../../jwxt/css/animate.min.css" rel="stylesheet">
+		<link href="../../../jwxt/css/webuploader.css" rel="stylesheet">
+		<link href="../../../jwxt/css/webuploader-demo.min.css" rel="stylesheet">
+		
+		
+		<link href="../../../jwxt/css/latest.css" rel="stylesheet">
+		<style>
+			.imgage {
+				width: 120px;
+				height: 150px;
+				margin: 0 auto;
+			}
+		
+			.boog {
+				width: 100%;
+				height: 100%;
+			}
+		
+			.imgtext {
+				width: 100%;
+				text-align: center;
+				margin-top: 20px;
+			}
+		
+			#imgsrm {
+				object-fit: cover;
+				/* object-position: 50% 20%; */
+				margin: 10px;
+				height: 140px;
+			}
+		
+			.ibox-content {
+				background-color: #fff;
+				color: inherit;
+				padding: 0;
+				border-color: #e7eaec;
+		
+				border-image: none;
+				border-style: none;
+				border-width: 1px 0;
+			}
+		
+			.botoren-silido {
+				margin: 20px;
+				border: 3px dashed #e6e6e6;
+			}
+			
+			#editor—wrapper {
+			  border: 1px solid #ccc;
+			  z-index: 100; /* 按需定义 */
+			}
+			#toolbar-container { border-bottom: 1px solid #ccc; }
+			#editor-container { height: 500px; }
+			.modal-body {
+			    padding: 0px !important;
+			}
+			
+			.w-e-bar-item{
+				padding: 0px !important;
+			}
+			.w-e-bar-item button{
+				padding: 0 7px !important;
+			}
+			.nav-tabscolor {
+				background-color: #1ab394 !important;
+				color: #ffffff !important;
+			}
+			
+		</style>
+	</head>
+	<body class="gray-bg">
+		<div class="row">
+			<div class="wrapper animated fadeInRight">
+				<div class="col-sm-12" style="background-color: #fff; padding-left: 0px; padding-right: 0px;">
+					<div class="panel blank-panel">
+						<div class="panel-heading">
+							<div class="panel-options">
+								<ul class="nav nav-tabs">
+									<li class="active"><a data-toggle="tab" href="#tab-4" class="nav-tabscolor">正文信息 <i class="fa fa-laptop"></i></a>
+									</li>
+									<li class=""><a data-toggle="tab" href="#tab-5" class="banjicqjl" onclick="homehtml()">标题图片 <i class="fa fa-desktop"></i></a>
+									</li>
+									<li class=""><a data-toggle="tab" href="#tab-6" class="banjicqj2" onclick="refreshTable()">添加附件 <i class="fa fa-folder-open"></i></a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="panel-body">
+							<div class="tab-content">
+								<div id="tab-4" class="tab-pane active">
+									<form method="post" class="form-horizontal" id="dataForm" enctype="multipart/form-data">
+										<div class="fomr-a1">
+											<div style="display: none;">
+												<input type="hidden" name="systemid" id="systemid" value="" />
+												<input type="hidden" name="bttpdz" id="bttpdz" value="" />
+												<input type="hidden" name="mlid" id="mlid" value="" />
+												<input type="hidden" name="optid" id="optid" value="info_update" />
+												<input type="hidden" name="fbzt" id="fbzt" value="01" />
+												<input type="hidden" name="zwwb" id="zwwb" value="" />
+												<input type="hidden" name="zwhtml" id="zwhtml" value="" />
+											</div>
+											<div class="form-group">
+												<div class="col-sm-12">
+													<div class="row">
+														<label class="control-label col-sm-1"><span style="color: red;">*</span> 名称:</label>
+														<div class="col-sm-11">
+															<input id="bt" name="bt" type="text"
+																class="form-control">
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<div class="col-sm-12">
+													<div class="row">
+														<label class="control-label col-sm-1"><span style="color: red;">*</span> 栏目:</label>
+														<div class="col-sm-11">
+															<input id="t" name="t" type="text" readonly="readonly"
+																class="form-control">
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<div class="col-sm-12">
+													<div class="row">
+														<label class="control-label col-sm-1"><span style="color: red;">*</span> 摘要:</label>
+														<div class="col-sm-11">
+															<input id="zy" name="zy" type="text"
+																class="form-control">
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<div class="col-sm-12">
+													<div class="row">
+														<div class="col-sm-12">
+															<div id="editor—wrapper">
+																<div id="toolbar-container"><!-- 工具栏 --></div>
+																<div id="editor-container"><!-- 编辑器 --></div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="form-group" align="center">
+												<button class="btn btn-success" type="submit" id="button">保
+													存</button>
+												&nbsp;&nbsp;&nbsp;
+												<button class="btn btn-success" type="button" onclick="mclose();">关
+													闭</button>
+											</div>
+										</div>
+									</form>
+								</div>
+								<div id="tab-5" class="tab-pane">
+									<div class="col-sm-6">
+										<div class="botoren-silido">
+											<img id="imgsrm" src="" />
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="ibox float-e-margins">
+											<div class="ibox-content" style="display: none;">
+												<div class="page-container">
+													<div id="uploader" class="wu-example">
+														<div class="queueList">
+															<div id="dndArea" class="placeholder">
+																<div id="filePicker"></div>
+																<p>或将图片拖到这里</p>
+															</div>
+														</div>
+														<div class="statusBar" style="display:none;">
+															<div class="progress">
+																<span class="text">0%</span>
+																<span class="percentage"></span>
+															</div>
+															<div class="info"></div>
+															<div class="btns">
+																<div id="filePicker2"></div>
+																<div class="uploadBtn">开始上传</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div id="tab-6" class="tab-pane">
+									<div class="col-sm-12" style="background-color: #fff;">
+										
+										<form role="form" id="searchForm" class="form-inline">
+											<button class="btn btn-primary btn-success" type="button" onclick="addsd()"><i class="fa fa-plus"></i> 添加附件</button>
+										</form>
+									</div>
+									<div class="ibox-content">
+										<table id="data_table" class="table table-condensed"></table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../../../jwxt/js/jquery.min.js?v=2.1.4"></script>
+		<script src="../../../jwxt/js/bootstrap.min.js?v=3.3.6"></script>
+		<script src="../../../jwxt/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+		<script src="../../../jwxt/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+		<script src="../../../jwxt/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+		<script src="../../../jwxt/js/content.min.js?v=1.0.0"></script>
+		<script src="../../../jwxt/js/common.js"></script>
+		<!-- jquery Form表单提交 -->
+		<script src="../../../jwxt/js/jquery-form.js""></script>
+		<!-- 表单验证 -->
+		<script src=" ../../../jwxt/js/plugins/validate/jquery.validate.min.js">
+		</script>
+		<script type="text/javascript">
+			var BASE_URL = '../../../jwxt/js/summernote/index.html';
+		</script>
+		<script src="../../../jwxt/js/webuploader/webuploader.js"></script>
+		<script src="../../../jwxt/js/webuploader-demo.js"></script>
+		<script src="../../../jwxt/js/plugins/validate/messages_zh.min.js"></script>
+		<script src="../../../jwxt/js/plugins/validate/form-validate-extend.min.js"></script>
+		<!-- 下拉列表 -->
+		<!-- js -->
+		<script src="../../../jwxt/js/page/systemManagement/xinxi/xinxi_update.js"></script>
+		
+		<script src="../../../jwxt/js/jquery.form.js"></script>
+		<script src="../../../jwxt/js/plugins/layer/layer.min.js"></script>
+		
+		<script src="../../../jwxt/js/latest.js"></script>
+		
+		
+		
+		<script>
+			const { createEditor, createToolbar } = window.wangEditor
+			
+			const editorConfig = {
+				MENU_CONF: {},
+			    placeholder: '开始编辑文本...',
+			    onChange(editor) {
+			      const html = editor.getHtml()
+			    }
+			}
+			editorConfig.MENU_CONF['uploadImage'] = {
+			  server: api_path+'/upload',
+			  timeout: 5 * 1000, // 5s
+			  fieldName: 'file',
+			  // meta: { token: 'xxx', a: 100 },
+			  metaWithUrl: false, // join params to url
+			  headers: { Accept: 'text/x-json' },
+			
+			  maxFileSize: 10 * 1024 * 1024, // 10M
+			
+			  base64LimitSize: 5 * 1024, // insert base64 format, if file's size less than 5kb
+			  // 上传之前触发
+			  onBeforeUpload(file) {
+			    console.log(file)
+			
+			    return file // will upload this file
+			    // return false // prevent upload
+			  },
+			  onProgress(progress) {
+			    console.log('onProgress', progress)
+			  },
+			  onSuccess(file, res) {
+			    console.log('onSuccess', file, res)
+			  },
+			  onFailed(file, res) {
+			    alert(res.message)
+			    console.log('onFailed', file, res)
+			  },
+			  onError(file, err, res) {
+			    alert(err.message)
+			    console.error('onError', file, err, res)
+			  },
+			   // customInsert(res: any, insertFn: InsertFnType) {  // TS 语法
+				customInsert(res, insertFn) {                  // JS 语法
+					// res 即服务端的返回结果
+				
+					// 从 res 中找到 url alt href ，然后插图图片
+					insertFn(api_img+res.result[0].url)
+				},
+			}
+			const editor = createEditor({
+			    selector: '#editor-container',
+			    html: '<p><br></p>',
+			    config: editorConfig,
+			    mode: 'default', // or 'simple'
+			})
+			
+			const toolbarConfig = {}
+			
+			const toolbar = createToolbar({
+			    editor,
+			    selector: '#toolbar-container',
+			    config: toolbarConfig,
+			    mode: 'default', // or 'simple'
+			})
+			var edit = function() {
+				$(".click2edit").summernote({
+					lang: "zh-CN",
+					focus: true
+				})
+			};
+			var save = function() {
+				var aHTML = $(".click2edit").code();
+				$(".click2edit").destroy()
+			};
+			$(".ibox-content").css("display", "block");
+		
+			function homehtml() {
+				let htmltext = $("#filePicker div").last()[0];
+				$(htmltext).css({
+					"width": "168px",
+					"height": "44px",
+					"left": "133px"
+				});
+			}
+		</script>
+	</body>
+</html>
+
+
+

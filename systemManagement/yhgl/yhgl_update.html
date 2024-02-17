@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>My JSP 'jsgl_add.jsp.jsp' starting page</title>
+		<link href="../../../jwxt/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+		<link href="../../../jwxt/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+		<link href="../../../jwxt/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+		<link href="../../../jwxt/css/style.min862f.css?v=4.1.0" rel="stylesheet">
+		<link href="../../../jwxt/css/animate.min.css" rel="stylesheet">
+		<link href="../../../jwxt/css/plugins/chosen/chosen.css" rel="stylesheet"><!-- 绝对路径 -->
+		
+	</head>
+	<body>
+	<div class="modal-body">
+			<form method="post" class="form-horizontal" id="dataForm" enctype="multipart/form-data">
+				<div style="display: none;">
+					<input type="hidden" name="systemid" id="systemid" value=""/>
+					<input type="hidden" name="creator" id="creator" value=""/>
+					<input type="hidden" name="lastupdatedby" id="lastupdatedby" value=""/>
+					<input type="hidden" name="optid" id="optid" value="sys_user_update" />
+					<input type="hidden" name="qmdz" id="qmdz" value="" />
+				</div>
+				<div class="form-group" >
+					<div class="col-sm-4">
+						<div class="row">
+							<label class="control-label col-sm-4"><span color="red" style="display:inline-block;vertical-align:middle;color: red;">*</span>&nbsp登录名</label>
+							<div class="col-sm-8">
+								<input id="loginname" name="loginname" readonly="readonly" type="text" class="form-control">
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="row">
+							<label class="control-label col-sm-4"><span color="red" style="display:inline-block;vertical-align:middle;color: red;">*</span>&nbsp姓名</label>
+							<div class="col-sm-8">
+								<input id="name" name="name" type="text" class="form-control">
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="row">
+							<label class="control-label col-sm-4"><span color="red" style="display:inline-block;vertical-align:middle;color: red;">*</span>&nbsp部门</label>
+							<div class="col-sm-8">
+								<select class="form-control m-b" id="dept" name="dept" dic="dic" kind="06" code="">
+								</select>
+							</div>
+						</div>
+					</div>
+	       		</div>
+	       		<div class="form-group" >
+					<div class="col-sm-4">
+						<div class="row">
+							<label class="control-label col-sm-4">身份证号:</label>
+							<div class="col-sm-8">
+								<input id="idcardno" name="idcardno" type="text" class="form-control">
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="row">
+							<label class="control-label col-sm-4">手机号码</label>
+							<div class="col-sm-8">
+								<input name="sjhm" id="sjhm" type="text" value=""  class="form-control">
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="row">
+							<label class="control-label col-sm-4"><span style="display:inline-block;vertical-align:middle;color: red;">*</span>&nbsp开通状态</label>
+							<div class="col-sm-8">
+								<select class="form-control m-b" id="allowable" name="allowable">
+									<option value="">--请选择--</option>
+									<option value="0">正常</option>
+									<option value="1">停用</option>
+								</select>
+							</div>
+						</div>
+					</div>
+	       		</div>
+				<div class="form-group imageblock" style="display: none;">
+					<i class="fa fa-user"></i>&nbsp;人员签名
+					<div class="hr-line-dashed addhebgf" style="margin: 10px 0;"></div>
+				</div>
+				<div class="form-group imageblock" style="display: none;">
+					<div class="col-sm-4">
+						<div class="row" style="width: 200px;">
+							<div id="imgdiv" style="border:1px dotted #bce8f1;padding: 5px;">
+								<img id="showimg" style="width: 188px;height: 100px;" onclick="window.open(this.src)" />
+							</div>
+							<div class="dleimage" style="width: 82px; margin: 0 auto; text-align: center; padding: 10px 0;color: #337ab7; cursor: pointer;"><i class="fa fa-remove fa-lg"></i> 删除</div>
+						</div>
+					</div>
+				</div>
+	       		<div class="form-group" align="center">
+					<button class="btn btn-success" type="submit" id="yh_add"><i class="fa fa-check"></i> 保 存</button>
+					&nbsp;&nbsp;
+					<div style="width:110px; display: inline-block;">
+						<button id="ryzp" type="button" class="btn btn-success ">人员签名上传</button>
+						<input type="file" accept="image/*" id="inputImage" class="hide">
+					</div>
+					&nbsp;&nbsp;
+					<button class="btn btn-success"  type="button" onclick="mclose();" ><i class="fa fa-close"></i> 关 闭</button>
+			    </div>
+			</form>
+		</div>
+	  </body>
+	  <script src="../../../jwxt/js/jquery.min.js?v=2.1.4"></script>
+	  <script src="../../../jwxt/js/bootstrap.min.js?v=3.3.6"></script>
+	  <script src="../../../jwxt/js/content.min.js?v=1.0.0"></script>
+	  <script src="../../../jwxt/js/common.js"></script>
+	  <!-- 表单验证 -->
+	  <script src="../../../jwxt/js/plugins/validate/jquery.validate.min.js"></script>
+	  <script src="../../../jwxt/js/plugins/validate/messages_zh.min.js"></script>
+	  <script src="../../../jwxt/js/plugins/validate/form-validate-extend.min.js"></script>
+	    <script src="../../../jwxt/js/jquery.form.js"></script> 
+	<!-- 下拉列表 -->
+	  <script src="../../../jwxt/js/plugins/chosen/chosen.jquery.js"></script>
+	  <!-- js -->
+	  <script src="../../../jwxt/js/page/systemManagement/yhgl/yhgl_update.js"></script>
+	  <!-- 日期组件 -->
+	  <script src="../../../jwxt/js/plugins/layer/laydate/laydate.js"></script>
+	  <script src="../../../jwxt/js/plugins/layer/layer.min.js"></script>
+	  
+	  <script>
+		var file = document.getElementById('inputImage');
+		var image = document.getElementById('showimg');
+	  	$(document).ready(function(){
+			
+			
+			
+			$("#ryzp").click(function() {
+				$("#inputImage").click();
+			});
+			
+			$(".dleimage").click(function (){
+				$("#qmdz").val('');
+				$(".imageblock").css("display","none");
+			})
+			
+			
+			
+			
+			
+			file.onchange = function() {
+				var fileData = this.files[0];//获取到一个FileList对象中的第一个文件( File 对象),是我们上传的文件
+				var pettern = /^image/;
+				if (!pettern.test(fileData.type)) {
+					alert("图片格式不正确");
+					return;
+				}
+				var reader = new FileReader();
+				reader.readAsDataURL(fileData);//异步读取文件内容，结果用data:url的字符串形式表示
+				/*当读取操作成功完成时调用*/
+				reader.onload = function(e) {
+					petternImage(this.result)
+					
+				}
+			}
+			
+		})
+	  	
+	  	
+	  	function petternImage(img){
+	  		let data = {
+	  			'base64' : getCaption(img),
+	  			'name' : $("#loginname").val()
+	  		};
+	  		$.ajax({
+	  			url: api_path + "/sc/qmyz",
+	  			type: 'post',
+	  			dataType: "json",
+	  			headers: {
+	  				"P_token": sessionStorage.getItem("p_token")
+	  			},
+	  			contentType: "application/json",
+	  			data: JSON.stringify(data),
+	  			success: function(res) {
+	  				
+	  				$(".imageblock").css("display","block")
+	  				const imageUrl = api_img+res.result;
+	  				$("#qmdz").val(res.result);
+	  				image.src = img;
+					$("#showimg").attr("src",img);
+	  			}
+	  		})
+	  	}
+	  	function getCaption(obj){
+	  	    var index=obj.lastIndexOf("\,");
+	  	    obj=obj.substring(index+1,obj.length);
+	  	    return obj;
+	  	}
+	  	
+	  
+	  </script>
+	  
+	  
+</html>

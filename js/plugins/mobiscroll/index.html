@@ -1,0 +1,42 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+    <meta charset="UTF-8">  
+    <title>hangge.com</title>  
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="./css/mobiscroll.core-2.5.2.css" />   
+    <link rel="stylesheet" type="text/css" href="./css/mobiscroll.animation-2.5.2.css" />  
+    <script type="text/javascript" src="./jquery-1.11.1.min.js">  </script>  
+    <script type="text/javascript" src="./js/mobiscroll.core-2.5.2.js"></script>  
+    <script type="text/javascript" src="./js/mobiscroll.core-2.5.2-zh.js"></script>  
+    <script type="text/javascript" src="./js/mobiscroll.datetime-2.5.1.js"></script>  
+    <script type="text/javascript" src="./js/mobiscroll.datetime-2.5.1-zh.js"></script>  
+    <script type="text/javascript">  
+		$(function () {  
+			var currYear = (new Date()).getFullYear();    
+			var opt={};  
+			opt.date = {preset : 'date',minDate:new Date()}; //最小时间为今天 
+			//opt.datetime = { preset : 'datetime', minDate: new Date(2012,3,10,9,22), maxDate: new Date(2014,7,30,15,44), stepMinute: 5  };  
+			//opt.datetime = {preset : 'datetime'};  
+			//opt.time = {preset : 'time'};  
+			opt.default = {  
+				theme: 'android-ics light', //皮肤样式  
+				display: 'modal', //显示方式   
+				mode: 'scroller', //日期选择模式  
+				lang:'zh',  
+				startYear:currYear - 20, //开始年份  
+				endYear:currYear + 20 //结束年份  
+			};  
+			
+			//设置日期控件配置
+			$("#appDateTime").val('').scroller('destroy').scroller($.extend(opt['date'], opt['default']));  
+					
+			//设置初始化时间（当天）
+			$("#appDateTime").scroller('setDate', new Date(), true);
+		});  
+	</script>  
+</head>  
+<body>
+     <input id="appDateTime" name="in_date"  />     
+</body>
+</html>

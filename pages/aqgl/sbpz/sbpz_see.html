@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link href="../../../css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="../../../css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <link href="../../../css/style.min862f.css?v=4.1.0" rel="stylesheet">
+    <link href="../../../css/animate.min.css" rel="stylesheet">
+    <link href="../../../css/plugins/chosen/chosen.css" rel="stylesheet">
+    <style>
+        .btn-searchForm-style {
+            margin-top: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+<div class="modal-body">
+    <form method="post" class="form-horizontal" id="dataForm" enctype="multipart/form-data">
+        <div class="form-group">
+            <div class="col-sm-6">
+                <div class="row">
+                    <label for="sbbh" class="control-label col-sm-4">
+                        <span style="color: red;">* </span>
+                        <span>设备编号</span>
+                    </label>
+                    <div class="col-sm-8">
+                        <input id="sbbh" name="sbbh" placeholder="" class="form-control" autocomplete="off"
+                               aria-required="true" aria-invalid="false" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="row">
+                    <label for="sbmc" class="control-label col-sm-4">
+                        <span style="color: red;">* </span>
+                        <span>设备名称</span>
+                    </label>
+                    <div class="col-sm-8">
+                        <input id="sbmc" name="sbmc" placeholder="" class="form-control" autocomplete="off"
+                               aria-required="true" aria-invalid="false" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-6">
+                <div class="row">
+                    <label for="sbip" class="control-label col-sm-4">
+                        <span style="color: red;">* </span>
+                        <span>设备IP</span>
+                    </label>
+                    <div class="col-sm-8">
+                        <input id="sbip" name="sbip" placeholder="" class="form-control" autocomplete="off"
+                               aria-required="true" aria-invalid="false" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="row">
+                    <label for="sbwz" class="control-label col-sm-4">
+                        <span style="color: red;">* </span>
+                        <span>设备位置</span>
+                    </label>
+                    <div class="col-sm-8">
+                        <input id="sbwz" name="sbwz" placeholder="" class="form-control" autocomplete="off"
+                               aria-required="true" aria-invalid="false" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-6">
+                <div class="row">
+                    <label for="sblx" class="control-label col-sm-4">
+                        <span style="color: red;">* </span>
+                        <span>设备类型</span>
+                    </label>
+                    <div class="col-sm-8">
+                        <input id="sblx" name="sblx_v" placeholder="" class="form-control" autocomplete="off"
+                               aria-required="true" aria-invalid="false" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="row">
+                    <label for="sbzt" class="control-label col-sm-4">
+                        <span style="color: red;">* </span>
+                        <span>设备状态</span>
+                    </label>
+                    <div class="col-sm-8">
+                        <input id="sbzt" name="sbzt_v" placeholder="" class="form-control" autocomplete="off"
+                               aria-required="true" aria-invalid="false" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-6">
+                <div class="row">
+                    <label for="azsj" class="control-label col-sm-4">
+                        <span style="color: red;">* </span>
+                        <span>安装时间</span>
+                    </label>
+                    <div class="col-sm-8">
+                        <input id="azsj" name="azsj" placeholder="" class="form-control" autocomplete="off"
+                               aria-required="true" aria-invalid="false" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="row">
+                    <label for="qysj" class="control-label col-sm-4">
+                        <span style="color: red;">* </span>
+                        <span>启用时间</span>
+                    </label>
+                    <div class="col-sm-8">
+                        <input id="qysj" name="qysj" placeholder="" class="form-control" autocomplete="off"
+                               aria-required="true" aria-invalid="false" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-6">
+                <div class="row">
+                    <label for="jd" class="control-label col-sm-4">
+                        <span>经度</span>
+                    </label>
+                    <div class="col-sm-8">
+                        <input id="jd" name="jd" placeholder="" class="form-control" autocomplete="off"
+                               aria-required="true" aria-invalid="false" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="row">
+                    <label for="wd" class="control-label col-sm-4">
+                        <span>纬度</span>
+                    </label>
+                    <div class="col-sm-8">
+                        <input id="wd" name="wd" placeholder="" class="form-control" autocomplete="off"
+                               aria-required="true" aria-invalid="false" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-6">
+                <div class="row">
+                    <label for="bzzt" class="control-label col-sm-4">
+                        <span style="color: red;">* </span>
+                        <span>标注状态</span>
+                    </label>
+                    <div class="col-sm-8">
+                        <input id="bzzt" name="bzzt_v" placeholder="" class="form-control" autocomplete="off"
+                               aria-required="true" aria-invalid="false" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group btn-searchForm-style">
+            <button class="btn btn-primary" type="button" onclick="mClose()">
+                <i class="fa fa-close"></i>
+                <span>关 闭</span>
+            </button>
+        </div>
+    </form>
+</div>
+</body>
+<script src="../../../js/jquery.min.js?v=2.1.4"></script>
+<script src="../../../js/bootstrap.min.js?v=3.3.6"></script>
+<script src="../../../js/content.min.js?v=1.0.0"></script>
+<script src="../../../js/common.js"></script>
+<script src="../../../js/plugins/validate/jquery.validate.min.js"></script>
+<script src="../../../js/plugins/validate/messages_zh.min.js"></script>
+<script src="../../../js/plugins/validate/form-validate-extend.min.js"></script>
+<script src="../../../js/jquery.form.js"></script>
+<script src="../../../js/plugins/layer/layer.min.js"></script>
+<script src="../../../js/plugins/chosen/chosen.jquery.js"></script>
+<script src="../../../js/plugins/layer/laydatev5.0/laydate.js"></script>
+<script src="../../../js/page/pages/aqgl/sbpz/sbpz_see.js"></script>
+</html>

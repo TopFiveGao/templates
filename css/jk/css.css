@@ -1,0 +1,37 @@
+/* CSS Document */
+a{ text-decoration:none;}
+.box{margin:20 auto;width:100%;padding:5px; background:#fff;}
+.bjxx{width:100%;height:25px;border-bottom:4px solid #e7eaec;font-size:14px;color:#676a6c;}
+.bjxx b{font-size:16px;}
+.bjxx span{ float:right;}
+.bjxx a{color:#676a6c;}
+
+.yxzt{width:100%;height:25px;border-bottom:2px solid #e7eaec;color:#676a6c;margin-top:20px;}
+.yxzt b{font-size:16px;}
+
+.yxztbox{width:100%;height:600px;margin-top:20px;}
+.yxztbox .hezi{width:350px;height:550px; float:left;}
+.yxztbox .hezi .text{width:350px;height:30px; text-align:center; font-weight:bold; font-size:14px;color:#676a6c;}
+.yxztbox .hezi .text .lan{color:#1779ce;}
+.yxztbox .hezi .text .hong{color:#d22828;}
+.yxztbox .hezi .text .huang{color:#ef740c;}
+.yxztbox .hezi .img{width:350px;height:193px; text-align:center; font-weight:bold; font-size:14px;color:#676a6c;margin-bottom:20px;}
+.yxztbox .hezi .text2{width:350px;height:25px;border-bottom:1px solid #e7eaec; font-weight:bold; font-size:14px;color:#676a6c;}
+.yxztbox .hezi .text3{width:350px;height:50px;font-weight:bold;margin-top:30px;}
+.yxztbox .hezi .text3 .left{width:70px;height:50px; line-height:50px;font-size:14px; float:left;color:#676a6c; text-align:right;}
+.yxztbox .hezi .text3 .right{width:250px;height:50px; line-height:50px;font-size:50px; float:left;color:#676a6c; font-family:"粗黑体", "微软雅黑", Arial;}
+.yxztbox .shuxian{width:40px;height:550px; background:url(../../image/jk/shuxian.png) center top repeat-y; float:left;}
+
+.cxbox{width:600px;height:600px;margin:20px auto auto 200px;}
+.cxbox .yuan1{width:200px;height:200px;font-family:"粗黑体", "微软雅黑", Arial; font-size:20px; text-align:center;border-radius: 50%; background:#3795e6;color:#fff; float:left;margin-right:40px;margin-top:40px;}
+.cxbox .yuan1 div{margin-top:60px;}
+.cxbox .yuan1 b{font-size:30px;}
+.cxbox .yuan2{width:200px;height:200px;font-family:"粗黑体", "微软雅黑", Arial; font-size:20px; text-align:center;border-radius: 50%; background:#717deb;color:#fff; float:left;margin-right:40px;margin-top:40px;}
+.cxbox .yuan2 div{margin-top:60px;}
+.cxbox .yuan2 b{font-size:30px;}
+.cxbox .yuan3{width:200px;height:200px;font-family:"粗黑体", "微软雅黑", Arial; font-size:20px; text-align:center;border-radius: 50%; background:#ff7f50;color:#fff; float:left;margin-right:40px;margin-top:40px;}
+.cxbox .yuan3 div{margin-top:60px;}
+.cxbox .yuan3 b{font-size:30px;}
+.cxbox .yuan4{width:200px;height:200px;font-family:"粗黑体", "微软雅黑", Arial; font-size:20px; text-align:center;border-radius: 50%; background:#da70d6;color:#fff; float:left;margin-right:40px;margin-top:40px;}
+.cxbox .yuan4 div{margin-top:60px;}
+.cxbox .yuan4 b{font-size:30px;}

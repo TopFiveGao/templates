@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>My JSP 'jsgl_add.jsp.jsp' starting page</title>
+		<link href="../../../jwxt/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+		<link href="../../../jwxt/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+		<link href="../../../jwxt/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+		<link href="../../../jwxt/css/style.min862f.css?v=4.1.0" rel="stylesheet">
+		<link href="../../../jwxt/css/animate.min.css" rel="stylesheet">
+		<link href="../../../jwxt/css/plugins/chosen/chosen.css" rel="stylesheet">
+		<link href="../../../jwxt/css/webuploader.css" rel="stylesheet">
+		<link href="../../../jwxt/css/webuploader-demo.min.css" rel="stylesheet">
+		<style>
+			.float-e-margins{
+				height: 300px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="modal-body">
+			<form method="post" class="form-horizontal" id="dataForm" enctype="multipart/form-data">
+				<div style="display: none;">
+					<input type="hidden" name="id" id="id" value="" />
+					<input type="hidden" name="optid" id="optid" value="info_insert_file_by" />
+					<input type="hidden" name="wjdz" id="wjdz" value="" />
+				</div>
+				<div class="form-group">
+					<div class="col-sm-12">
+						<div class="row">
+							<label class="control-label col-sm-2">*名 称:</label>
+							<div class="col-sm-10">
+								<input id="mc" name="mc" type="text" class="form-control">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-12">
+						<div class="row">
+							<label class="control-label col-sm-2">类 型:</label>
+							<div class="col-sm-10">
+								<input id="lx" name="lx" type="text" class="form-control" readonly="readonly">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-12">
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="ibox float-e-margins">
+									
+									<div class="ibox-content">
+										<div class="page-container">
+											<div id="uploader" class="wu-example">
+												<div class="queueList">
+													<div id="dndArea" class="placeholder">
+														<div id="filePicker"></div>
+														<p>或将文件拖到这里</p>
+													</div>
+												</div>
+												<div class="statusBar" style="display:none;">
+													<div class="progress">
+														<span class="text">0%</span>
+														<span class="percentage"></span>
+													</div>
+													<div class="info"></div>
+													<div class="btns">
+														<div id="filePicker2"></div>
+														<div class="uploadBtn">开始上传</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-group" align="center">
+					<button class="btn btn-success" type="submit" id="button">保 存</button>
+					&nbsp;&nbsp;&nbsp;
+					<button class="btn btn-success" type="button" onclick="mclose();">关 闭</button>
+				</div>
+		</div>
+	</body>
+	<script src="../../../jwxt/js/jquery.min.js?v=2.1.4"></script>
+	<script src="../../../jwxt/js/bootstrap.min.js?v=3.3.6"></script>
+	<script src="../../../jwxt/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+	<script src="../../../jwxt/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+	<script src="../../../jwxt/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+	<script src="../../../jwxt/js/content.min.js?v=1.0.0"></script>
+	<script src="../../../jwxt/js/common.js"></script>
+	<!-- jquery Form表单提交 -->
+	<script src="../../../jwxt/js/jquery-form.js""></script>
+	<!-- 表单验证 -->
+	<script src=" ../../../jwxt/js/plugins/validate/jquery.validate.min.js">
+	</script> <script type="text/javascript">
+		var BASE_URL = '../../../jwxt/js/summernote/index.html';
+	</script>
+	<script src="../../../jwxt/js/webuploader/webuploader.js"></script>
+	<script src="../../../jwxt/js/webuploader-demos.js"></script>
+	<script src="../../../jwxt/js/plugins/validate/messages_zh.min.js"></script>
+	<script src="../../../jwxt/js/plugins/validate/form-validate-extend.min.js"></script>
+	<!-- 下拉列表 -->
+	<script src="../../../jwxt/js/plugins/chosen/chosen.jquery.js"></script>
+	<!-- js -->
+	<script src="../../../jwxt/js/page/systemManagement/xinxi/xinxi_addsd.js"></script>
+	<!-- 日期组件 -->
+	<script src="../../../jwxt/js/plugins/layer/laydate/laydate.js"></script>
+	<script src="../../../jwxt/js/jquery.form.js"></script>
+	<script src="../../../jwxt/js/plugins/layer/layer.min.js"></script>
+	<script src="../../../jwxt/js/wangEditor.min.js"></script>
+	<script src="../../../jwxt/js/summernote/summernote.min.js"></script>
+	<script src="../../../jwxt/js/summernote/summernote-zh-CN.js"></script>
+</html>

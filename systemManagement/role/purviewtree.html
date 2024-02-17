@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		
+		<title>树形视图</title>
+		<meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+		<meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+		
+		 <link href="../../../jwxt/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+		<link href="../../../jwxt/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+		
+		<link href="../../../jwxt/css/animate.min.css" rel="stylesheet">
+		<link href="../../../jwxt/css/style.min862f.css?v=4.1.0" rel="stylesheet">
+		<link href="../../../jwxt/css/plugins/treeview/bootstrap-treeview.css" rel="stylesheet">
+	</head>
+	<body class="gray-bg">
+	    <div class="row wrapper wrapper-content animated fadeInRight">
+	        
+	       <div id="selectable_tree" class="test"> </div> 
+	      <div class="form-group" align="center">
+						<button class="btn btn-primary active" type="button">
+						  新增
+						</button>
+						&nbsp;&nbsp;&nbsp;
+						 <button class="btn btn-primary active"  type="button" onclick="mclose();" >    关  闭    </button>
+		</div>
+	    </div>
+	    <script src="../../../jwxt/js/jquery/jquery.js"></script>
+	    <script src="../../../jwxt/js/bootstrap.min.js?v=3.3.6"></script>
+	    <script src="../../../jwxt/js/content.min.js?v=1.0.0"></script>
+	    <script src="../../../jwxt/js/plugins/treeview/bootstrap-treeview.js"></script>
+	    <script src="../../../jwxt/js/demo/treeview-demo.min.js"></script>
+	</body>
+	   <script>
+	     
+	     $(document).ready(function(){
+			  //初始化树
+		/*	  $("#back").treeview({
+				    animated: "fast",
+					collapsed: true,
+					unique: true,
+					persist: "location",
+					url:""
+			  });*/
+			     $('#selectable_tree').treeview({data: e,showCheckbox:true,showBorder:true,multiSelect:false,levels: 0,onNodeSelected:function(event, data){
+					checkNode_z(event, data);
+			     },onNodeChecked:function (event, data){
+			       checkNode_z(event, data);
+			     },onNodeUnchecked :function (event, data){
+			         nocheckNode_z(event, data);
+			     }}); 
+			    
+	      }); 
+	      
+	      
+	      function checkNode_z(event, data){
+	         if(data.nodes != undefined){
+	              $('#selectable_tree').treeview('uncheckNode', [ data.nodeId, { silent: true } ]);
+	               return ;
+	            }
+	            
+	          $('#selectable_tree').treeview('checkNode', [ data.nodeId, { silent: true } ]);
+					  var parentobj = $('#selectable_tree').treeview('getParent', data.nodeId);
+					  while(true){  
+					     if(parentobj == undefined){
+					         return;
+					     }
+					    $('#selectable_tree').treeview('checkNode', [ parentobj.nodeId, { silent: true } ]);
+					    parentobj =  $('#selectable_tree').treeview('getParent',parentobj.nodeId);
+					  }
+	      }
+	      
+	      function  nocheckNode_z(event, data){
+	      
+	            if(data.nodes != undefined){
+	               return ;
+	            }
+	            
+	            var parentobj = data;
+	            var cruentid=  data.nodeId;
+	              while(true){
+	                 if(parentobj == undefined){
+	                    return;
+	                 }
+	                  $('#selectable_tree').treeview('uncheckNode', [ cruentid, { silent: true } ]);
+	                  
+	                 var ids =    $('#selectable_tree').treeview('getSiblings', cruentid);
+	                 for(var i = 0;i<ids.length;i++){
+						    if(ids[i].state.checked){
+						       return;
+						    }
+					 }
+					 parentobj =  $('#selectable_tree').treeview('getParent',parentobj.nodeId);
+					  cruentid  = parentobj.nodeId;
+	              }
+	      
+	      }
+	      
+	         function mclose(){
+		        var index = window.parent.parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+		    	parent.parent.layer.close(index); //再执行关闭 
+		    }
+	      
+	      
+	      
+	     var e = [{text:"\u7236\u8282\u70b9 1", href:"#parent1", tags:["4"], nodes:[{text:"\u5b50\u8282\u70b9 1", href:"#child1", tags:["2"], nodes:[{text:"\u5b59\u5b50\u8282\u70b9 1", href:"#grandchild1", tags:["0"]}, {text:"\u5b59\u5b50\u8282\u70b9 2", href:"#grandchild2", tags:["0"]}]}, {text:"\u5b50\u8282\u70b9 2", href:"#child2", tags:["0"]}]}, {text:"\u7236\u8282\u70b9 2", href:"#parent2", tags:["0"]}, {text:"\u7236\u8282\u70b9 3", href:"#parent3", tags:["0"]}, {text:"\u7236\u8282\u70b9 4", href:"#parent4", tags:["0"]}, {text:"\u7236\u8282\u70b9 5", href:"#parent5", tags:["0"]}], o = [{text:"\u7236\u8282\u70b9 1", tags:["2"], nodes:[{text:"\u5b50\u8282\u70b9 1", tags:["3"], nodes:[{text:"\u5b59\u5b50\u8282\u70b9 1", tags:["6"]}, {text:"\u5b59\u5b50\u8282\u70b9 2", tags:["3"]}]}, {text:"\u5b50\u8282\u70b9 2", tags:["3"]}]}, {text:"\u7236\u8282\u70b9 2", tags:["7"]}, {text:"\u7236\u8282\u70b9 3", icon:"glyphicon glyphicon-earphone", href:"#demo", tags:["11"]}, {text:"\u7236\u8282\u70b9 4", icon:"glyphicon glyphicon-cloud-download", href:"/demo.html", tags:["19"], selected:!0}, {text:"\u7236\u8282\u70b9 5", icon:"glyphicon glyphicon-certificate", color:"pink", backColor:"red", href:"http://www.tesco.com", tags:["available", "0"]}], t = "[{\"text\": \"\u7236\u8282\u70b9 1\",\"nodes\": [{\"text\": \"\u5b50\u8282\u70b9 1\",\"nodes\": [{\"text\": \"\u5b59\u5b50\u8282\u70b9 1\"},{\"text\": \"\u5b59\u5b50\u8282\u70b9 2\"}]},{\"text\": \"\u5b50\u8282\u70b9 2\"}]},{\"text\": \"\u7236\u8282\u70b9 2\"},{\"text\": \"\u7236\u8282\u70b9 3\"},{\"text\": \"\u7236\u8282\u70b9 4\"},{\"text\": \"\u7236\u8282\u70b9 5\"}]";
+	   </script>
+</html>

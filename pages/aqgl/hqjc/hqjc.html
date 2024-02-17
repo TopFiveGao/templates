@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../../../css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="../../../css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <link href="../../../css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="../../../css/style.min862f.css?v=4.1.0" rel="stylesheet">
+    <link href="../../../css/animate.min.css" rel="stylesheet">
+    <link href="../../../css/plugins/treeview/bootstrap-treeview.css" rel="stylesheet">
+    <link href="../../../css/plugins/chosen/chosen.css" rel="stylesheet">
+    <!--  分页插件样式  -->
+    <link href="../../../js/plugins/jqPaginator/css/htmleaf-demo.css" rel="stylesheet"/>
+    <style>
+        /** js 动态添加的 html 中的类, 禁止删除 */
+        .viewText {
+            border: 1px solid #ddd;
+            padding: 0 10px;
+        }
+
+        .viewText > div {
+            margin: 10px 0;
+            padding-right: 10px;
+        }
+
+        .dataContainer {
+            height: 566px;
+            overflow-x: hidden;
+        }
+
+        /** 动态 html 归属的容器类 */
+        #dataHtml [class^=col-] {
+            margin: 15px 0;
+            padding-right: 40px;
+        }
+
+        .box {
+            margin-bottom: 0;
+            margin-top: 5px;
+        }
+
+        /* 当前页码按钮的悬停样式 */
+        .pagination > .active > a:hover {
+            background-color: #337ab7;
+            color: white;
+        }
+
+        /* 当前页码按钮的选中样式 */
+        .pagination > .active > a {
+            background-color: #337ab7;
+            color: white;
+        }
+
+        .pagination > .active > a:focus {
+            background-color: #337ab7;
+            color: white;
+        }
+
+        .my-flex-between {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .my-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            column-count: 2;
+            font-weight: 400;
+            text-align: center;
+            user-select: none;
+            width: 50px;
+            border: 1px solid transparent;
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: 0.25rem;
+            transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .my-btn:hover {
+            opacity: 0.8;
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            border-radius: 5px;
+            background: #19b691;
+        }
+
+        .fw {
+            width: 160px !important;
+        }
+    </style>
+</head>
+
+<body class="gray-bg">
+<div class="wrapper animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="box">
+                <div class="ibox-content">
+                    <form role="form" id="searchForm" class="form-inline">
+                        <div class="my-flex-between">
+                            <div>
+                                <div class="form-group">
+                                    <select dic="dic" class="form-control fw" id="gyhs" name="fjbhsxa" title="公寓号数"
+                                            optid="ssgl_sss_select" onchange="generateLc(value)"></select>
+                                </div>
+                                <div class="form-group">
+                                    <select dic="dic" class="form-control fw" id="gylc" name="fjbhsxb" title="公寓楼层"
+                                            optid="ssgl_supercode_select" style="visibility: hidden;"></select>
+                                </div>
+                                <!--<div class="form-group">-->
+                                <!--    <select dic="dic" class="form-control fw" id="ssh" name="ssh" title="宿舍号"-->
+                                <!--            optid="ssgl_ssbh_select"></select>-->
+                                <!--</div>-->
+                                <button class="btn btn-info" id="button_search" type="button"><i
+                                        class="fa fa-search"></i> 查询
+                                </button>
+                                <button onclick="hqReset()" class="btn btn-warning" type="reset"><i class="fa fa-refresh"></i> 重置</button>
+                            </div>
+                            <canvas id="legend" width="126" height="46"></canvas>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="box float-e-margins">
+                <div class="ibox-content">
+                    <div class="dataContainer">
+                        <div class="row" id="dataHtml"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  分页容器  -->
+    <div style="display: flex;justify-content: center;">
+        <ul class="pagination" id="pagination"></ul>
+    </div>
+</div>
+<script src="../../../js/jquery.min.js?v=2.1.4"></script>
+<script src="../../../js/bootstrap.min.js?v=3.3.6"></script>
+<script src="../../../js/content.min.js?v=1.0.0"></script>
+<script src="../../../js/common.js"></script>
+<script src="../../../js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="../../../js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script src="../../../js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../js/plugins/layer/layer.min.js"></script>
+<script src="../../../js/plugins/layer/laydatev5.0/laydate.js"></script>
+<script src="../../../js/plugins/treeview/bootstrap-treeview.js"></script>
+<script src="../../../js/plugins/chosen/chosen.jquery.js"></script>
+<script src="../../../js/page/pages/aqgl/hqjc/hqjc.js"></script>
+<!--分页插件-->
+<script src="../../../js/plugins/jqPaginator/jqpaginator.min.js"></script>
+<script>
+    laydate.render({
+        elem: '#cjsj', //指定元素
+        format: 'yyyy-MM-dd',
+        type: 'date',
+        range: "~", //或 range: '~' 来自定义分割字符
+        // max: 0, //最大值今天
+        done: function (value, date, endDate) {
+        }
+    })
+</script>
+</body>
+</html>

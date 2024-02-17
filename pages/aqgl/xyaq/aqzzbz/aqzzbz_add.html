@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>optid管理</title>
+		<link href="../../../../css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+		<link href="../../../../css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+		<link href="../../../../css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+		<link href="../../../../css/style.min862f.css?v=4.1.0" rel="stylesheet">
+		<link href="../../../../css/animate.min.css" rel="stylesheet">
+		<link href="../../../../css/plugins/chosen/chosen.css" rel="stylesheet">
+	</head>
+	<body>
+		<div class="modal-body">
+			<form method="post" class="form-horizontal" id="dataForm">
+				<div style="display: none;">
+					<input type="hidden" name="optid" value="aqgl_aqzzbz_insert" />
+				</div>
+				<div class="form-group">
+					<div class="col-sm-10">
+						<div class="row">
+							<label class="control-label col-sm-4"><span style="color: red;"> </span>管理机构:</label>
+							<div class="col-sm-8">
+								<input id="gljg" name="gljg" type="text" class="form-control" autocomplete="off">
+								<!-- <select dic="dic" kind="xn"  class="form-control" id="xn" name="xn"  title="请选择"></select> -->
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div class="form-group">
+					<div class="col-sm-10">
+						<div class="row">
+							<label class="control-label col-sm-4"><span style="color: red;"> </span>管理人员:</label>
+							<div class="col-sm-8">
+								<select dic="dic" optid="jwxx_yhzd_select"  class="form-control" id="glry" name="glry"  title="请选择"></select>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div class="form-group">
+					<div class="col-sm-10">
+						<div class="row">
+							<label class="control-label col-sm-4"><span style="color: red;"> </span>联系电话:</label>
+							<div class="col-sm-8">
+								<input id="lxdh" name="lxdh" type="number" class="form-control" autocomplete="off">
+							</div>
+						</div>
+					</div>
+
+				</div>
+				
+
+				<div class="form-group" align="center">
+					<button class="btn btn-primary btn-success" type="submit"><i class="fa fa-check"></i> 保 存</button>
+					&nbsp;&nbsp;&nbsp;
+					<button class="btn btn-primary btn-success" type="button" onclick="mclose();"><i
+							class="fa fa-close"></i> 关 闭</button>
+				</div>
+			</form>
+		</div>
+	</body>
+	<script src="../../../../js/jquery.min.js?v=2.1.4"></script>
+	<script src="../../../../js/bootstrap.min.js?v=3.3.6"></script>
+	<script src="../../../../js/content.min.js?v=1.0.0"></script>
+	<!-- 日期组件 -->
+	<script src="../../../../js/plugins/layer/layer.min.js"></script>
+	<script src="../../../../js/plugins/layer/laydatev5.0/laydate.js"></script>
+	<script src="../../../../js/common.js"></script>
+	<!-- 表单验证 -->
+	<script src="../../../../js/plugins/validate/jquery.validate.min.js"></script>
+	<script src="../../../../js/plugins/validate/messages_zh.min.js"></script>
+	<script src="../../../../js/plugins/validate/form-validate-extend.min.js"></script>
+	<!-- js -->
+	<script src="../../../../js/jquery.form.js"></script>
+	<script src="../../../../js/plugins/chosen/chosen.jquery.js"></script>
+	<script src="../../../../js/page/pages/aqgl/xyaq/aqzzbz/aqzzbz_add.js"></script>
+
+</html>

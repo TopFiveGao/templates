@@ -1,0 +1,31 @@
+{
+    "result_msg": "",
+    "result_state": "0",
+    "total_number": "",
+    "page_index": "",
+    "page_size": "",
+    "result": [
+        {
+            "name": "管理",
+            "url": "",
+            "nodes": [
+                {
+                    "name": "角色管理",
+                    "url": "/jwxt/role/role.jsp"
+                },
+                {
+                    "name": "用户管理",
+                    "url": "/jwxt/yhgl/yhgl_list.jsp"
+                },
+                {
+                    "name": "机构管理",
+                    "url": "/jwxt/jggl/jggl_list.jsp"
+                },
+                {
+                    "name": "select",
+                    "url": "/jwxt/index_v4.html"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=8">
+		<meta http-equiv="Expires" content="0">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-control" content="no-cache">
+		<meta http-equiv="Cache" content="no-cache">
+		<title>optid管理</title>
+		<link href="../../../jwxt/css/bootstrap.min14ed.css" rel="stylesheet">
+		<link href="../../../jwxt/css/font-awesome.min93e3.css" rel="stylesheet">
+		<link href="../../../jwxt/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+		<link href="../../../jwxt/css/style.min862f.css" rel="stylesheet">
+		<link href="../../../jwxt/css/animate.min.css" rel="stylesheet">
+		<link href="../../../jwxt/css/plugins/treeview/bootstrap-treeview.css" rel="stylesheet">
+		<link href="../../../jwxt/css/plugins/chosen/chosen.css" rel="stylesheet">
+	</head>
+	
+	<body class="gray-bg">
+	    <div class="wrapper animated fadeInRight">
+	        <div class="row">
+				<div class="col-sm-12  ">
+					<form role="form" id="searchForm" class="form-inline">
+						<div class="form-group">
+							<input placeholder="optid" class="form-control" id="optid_name" name="optid_name" aria-required="true">
+						</div>
+						<div class="form-group">
+							<input placeholder="名称" class="form-control" id="info" name="info" aria-required="true">
+						</div>
+						<div class="form-group">
+							<select dic="dic" kind="OPTTYPE" class="form-control" id="lx" name="lx" title="操作类型"></select>
+						</div>
+						<button class="btn btn-info btn-success" id="button_search" type="button"><i class="fa fa-search"></i> 查询</button>
+						<button class="btn btn-warning btn-success" type="reset"><i class="fa fa-refresh"></i> 重置</button>
+						<button class="btn btn-primary btn-success" id="button_add" type="button"><i class="fa fa-plus"></i> 新增</button>
+					</form>
+				</div>
+				<div class="ibox-content">
+					<table id="data_table" class="table  table-condensed"></table>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="../../../jwxt/js/jquery.min.js"></script>
+	<script src="../../../jwxt/js/bootstrap.min.js"></script>
+	<script src="../../../jwxt/js/content.min.js"></script>
+	<script src="../../../jwxt/js/common.js"></script>
+	<script src="../../../jwxt/js/page/systemManagement/optid/optid_list.js"></script>
+	<script src="../../../jwxt/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+	<script src="../../../jwxt/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+	<script src="../../../jwxt/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+	<script src="../../../jwxt/js/plugins/layer/layer.min.js"></script>
+	<script src="../../../jwxt/js/plugins/treeview/bootstrap-treeview.js"></script>
+	<script src="../../../jwxt/js/plugins/chosen/chosen.jquery.js"></script>
+</html>
+</html>
