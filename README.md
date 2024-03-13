@@ -214,3 +214,96 @@ module.exports = {
   }
 }
 ```
+
+# 3. Element-plus 自动导入
+
+## 1. 安装依赖
+
+```sh
+pnpm install element-plus
+pnpm install -D unplugin-vue-components unplugin-auto-import unplugin-icons
+```
+
+## 2. 配置组件自动导入
+
+```js
+// vite.config.ts
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+
+// 如果配置了 eslintrc , 一定要去 .eslintrc.cjs 文件中配置好生成的 src/.eslintrc-auto-import.json 文件路径以解决编译器报错提示
+export default {
+  plugins: [
+    AutoImport({
+      imports: ['vue', 'vue-router', 'vue-i18n', '@vueuse/core'],
+      dts: 'src/auto-imports.d.ts',
+      resolvers: [ElementPlusResolver()],
+      eslintrc: {
+        enabled: true,
+        filepath: 'src/.eslintrc-auto-import.json',
+        globalsPropValue: true
+      }
+    }),
+    Components({
+      dts: 'src/components.d.ts',
+      resolvers: [ElementPlusResolver()]
+    })
+  ]
+}
+
+// .eslintrc.cjs
+module.exports = {
+  root: true,
+  extends: [
+    'plugin:vue/vue3-essential',
+    'eslint:recommended',
+    '@vue/eslint-config-typescript',
+    '@vue/eslint-config-prettier/skip-formatting',
+    './src/.eslintrc-auto-import.json'
+  ]
+}
+```
+
+## 3. 配置 icons 自动导入
+
+```js
+// vite.config.ts
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import Icons from 'unplugin-icons/vite'
+import IconsResolver from 'unplugin-icons/resolver'
+
+export default {
+  plugins: [
+    AutoImport({
+      imports: ['vue', 'vue-router', 'vue-i18n', '@vueuse/core'],
+      dts: 'src/auto-imports.d.ts',
+      eslintrc: {
+        enabled: true,
+        filepath: 'src/.eslintrc-auto-import.json',
+        globalsPropValue: true
+      },
+      resolvers: [
+        ElementPlusResolver(),
+        IconsResolver({
+          prefix: 'Icon'
+        })
+      ]
+    }),
+    Components({
+      dts: 'src/components.d.ts',
+      resolvers: [
+        ElementPlusResolver(),
+        IconsResolver({
+          enabledCollections: ['ep']
+        })
+      ]
+    }),
+    Icons({
+      autoInstall: true
+    })
+  ]
+}
+```
