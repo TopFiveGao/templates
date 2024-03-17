@@ -307,3 +307,32 @@ export default {
   ]
 }
 ```
+
+# 4. 动态加载 vite.config.ts
+
+```ts
+// vite.config.ts
+import { UserConfig, ConfigEnv, loadEnv, defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+
+export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
+  const env = loadEnv(mode, process.cwd())
+  return {
+    // plugins: [],
+    // resolve: {},
+  }
+})
+```
+
+```js
+// .eslintrc.cjs
+// vite.config.ts 配置中 process 可能会报红 , 在 eslint 中配置 node: true 可解决
+module.exports = {
+  env: {
+    browser: true,
+    node: true
+  }
+}
+```
+
+# 5.
