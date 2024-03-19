@@ -335,4 +335,40 @@ module.exports = {
 }
 ```
 
-# 5.
+# 5. 封装 axios
+
+```ts
+// 结合 .env 文件 和 vite.config.ts 中的 server 配置， 配置好 axios 实例的代理请求地址
+
+// 1. src/utils/request.ts
+const service = axios.create({
+  baseURL: import.meta.env.VITE_APP_PROXY_PREFIX,
+  timeout: 50000,
+  headers: { 'Content-Type': 'application/json;charset=utf-8' }
+})
+
+// 2. vite.config.ts
+export default defineConfig(({ mode }: ConfigEnv) => {
+  const env = loadEnv(mode, process.cwd())
+  return {
+    server: {
+      host: '0.0.0.0',
+      open: true,
+      port: 5173,
+      proxy: {
+        [env.VITE_APP_PROXY_PREFIX]: {
+          target: env.VITE_APP_BASE_API,
+          changeOrigin: true,
+          rewrite: (path) => path.replace(new RegExp('^' + env.VITE_APP_PROXY_PREFIX), '')
+        }
+      }
+    }
+  }
+})
+
+// 3. 上面配置好后， 就可以去业务中使用了， 但为了代码质量一般还会封装一层业务 api
+// 3. src/api/login/index.ts         （ 对 api 业务请求进行具体的处理，向外只导出业务 api，实现一层请求的封装 ）
+//    src/api/login/types/login.ts   （ 对于 api 请求的传入参数或返回参数进行类型定义，可得到更好的代码维护 ）
+//    src/types/api.d.ts             （ 对于 api 请求的返回参数的类型进行泛型定义，以处理复杂的返回参数类型 ）
+//    src/api/consts.ts               ( 配置式管理所有 api 请求路径 )
+```

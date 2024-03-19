@@ -13,7 +13,6 @@ import IconsResolver from 'unplugin-icons/resolver'
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
   const env = loadEnv(mode, process.cwd())
-  console.log(env)
   return {
     plugins: [
       vue(),
@@ -21,7 +20,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       VueDevTools(),
       AutoImport({
         // 'vue-i18n', '@vueuse/core'
-        imports: ['vue', 'vue-router'],
+        imports: ['vue', 'vue-router', 'pinia'],
         dts: 'src/auto-imports.d.ts',
         resolvers: [
           ElementPlusResolver(),
@@ -51,6 +50,18 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
     resolve: {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url))
+      }
+    },
+    server: {
+      host: '0.0.0.0',
+      open: true,
+      port: 5173,
+      proxy: {
+        [env.VITE_APP_PROXY_PREFIX]: {
+          target: env.VITE_APP_BASE_API,
+          changeOrigin: true,
+          rewrite: (path) => path.replace(new RegExp('^' + env.VITE_APP_PROXY_PREFIX), '')
+        }
       }
     }
   }

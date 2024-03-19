@@ -1,5 +1,5 @@
 {
-  "name": "mighty-admin-gao",
+  "name": "templates",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -26,6 +26,7 @@
     "*.{ts,tsx,js,jsx,cjs,mjs,vue,css,scss,less,md}": "prettier --write"
   },
   "dependencies": {
+    "axios": "^1.6.8",
     "element-plus": "^2.6.1",
     "pinia": "^2.1.7",
     "vue": "^3.4.21",
