@@ -372,3 +372,60 @@ export default defineConfig(({ mode }: ConfigEnv) => {
 //    src/types/api.d.ts             （ 对于 api 请求的返回参数的类型进行泛型定义，以处理复杂的返回参数类型 ）
 //    src/api/consts.ts               ( 配置式管理所有 api 请求路径 )
 ```
+
+# 6. vue-router 配置
+
+```ts
+// src/router/index.ts
+// 没啥好讲的，就提下容易出问题的点，就是配置好了路由，一定要结合 router-view 组件使用，否则你整半天页面还是没变化
+```
+
+# 7. 实现 svg 图标引入
+
+1. 安装插件
+
+```shell
+pnpm install vite-plugin-svg-icons -D
+```
+
+2. 配置插件
+
+```ts
+// 1. vite.config.ts
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+
+createSvgIconsPlugin({
+  iconDirs: [fileURLToPath(new URL('./src/icons', import.meta.url))],
+  symbolId: 'svg-icon-[name]'
+})
+
+// 2. main.ts
+import 'virtual:svg-icons-register'
+```
+
+3. 封装 SvgIcon 组件
+
+```vue
+<script setup lang="ts">
+// SvgIcon.vue
+// 常用的也就是宽高和颜色属性，如果颜色不生效，需要去 svg 文件把所有 fill 设置删除，这种做法费劲，但一般不需要设置 color
+interface Props {
+  w?: number
+  h?: number
+  color?: string
+  name: string
+}
+
+const props = defineProps<Props>()
+const symbolId = computed(() => `#svg-icon-${props.name}`)
+const w = computed(() => props.w || 80)
+const h = computed(() => props.h || 80)
+const color = computed(() => props.color || 'black')
+</script>
+
+<template>
+  <svg :width="w" :height="h" aria-hidden="true">
+    <use :href="symbolId" :fill="color" />
+  </svg>
+</template>
+```

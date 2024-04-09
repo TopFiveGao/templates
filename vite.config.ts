@@ -9,6 +9,7 @@ import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
@@ -45,6 +46,10 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       }),
       Icons({
         autoInstall: true
+      }),
+      createSvgIconsPlugin({
+        iconDirs: [fileURLToPath(new URL('./src/icons', import.meta.url))],
+        symbolId: 'svg-icon-[name]'
       })
     ],
     resolve: {
