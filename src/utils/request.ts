@@ -1,5 +1,6 @@
 import axios, { type InternalAxiosRequestConfig, type AxiosResponse } from 'axios'
 import { useUserStore } from '@/store/modules/user'
+import type { ApiResponseData } from '@/types/api'
 
 const service = axios.create({
   baseURL: import.meta.env.VITE_APP_PROXY_PREFIX,
@@ -21,18 +22,15 @@ service.interceptors.request.use(
 )
 
 service.interceptors.response.use(
-  (response: AxiosResponse) => {
-    const { code, msg } = response.data
-    if (code === '00000') {
+  // 该函数返回值类型自动推导为 ApiResponseData<any>, 但返回值要求是 AxiosResponse 类型, 否则报错, 所以改成 any
+  (response: AxiosResponse<ApiResponseData<any>>): any => {
+    const { result_state, result_msg } = response.data
+    if (result_state === '0') {
+      return response.data
+    } else {
+      ElMessage.error(result_msg || '系统出错')
       return response.data
     }
-
-    if (response.data instanceof ArrayBuffer) {
-      return response
-    }
-
-    ElMessage.error(msg || '系统出错')
-    return Promise.reject(new Error(msg || 'Error'))
   },
   (error: any) => {
     return Promise.reject(error.message)

@@ -1,5 +1,5 @@
-interface ApiResponseData<T> {
+export interface ApiResponseData<T> {
   result: T
-  result_status: string
+  result_state: string
   result_msg: string
 }

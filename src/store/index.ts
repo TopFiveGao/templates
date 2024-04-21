@@ -1,12 +1,7 @@
-export const useAppStore = defineStore('app', () => {
-  const appName = ref('Mighty admin')
-  function setAppName(name: string) {
-    appName.value = name
-  }
-  return {
-    appName,
-    setAppName
-  }
-})
+import piniaPluginPersistedState from 'pinia-plugin-persistedstate'
+
 const store = createPinia()
+store.use(piniaPluginPersistedState)
+
 export default store
+export * from './modules/user'
