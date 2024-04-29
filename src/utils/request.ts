@@ -24,11 +24,10 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   // 该函数返回值类型自动推导为 ApiResponseData<any>, 但返回值要求是 AxiosResponse 类型, 否则报错, 所以改成 any
   (response: AxiosResponse<ApiResponseData<any>>): any => {
-    const { result_state, result_msg } = response.data
+    const { result_state } = response.data
     if (result_state === '0') {
       return response.data
     } else {
-      ElMessage.error(result_msg || '系统出错')
       return response.data
     }
   },

@@ -373,14 +373,106 @@ export default defineConfig(({ mode }: ConfigEnv) => {
 //    src/api/consts.ts               ( 配置式管理所有 api 请求路径 )
 ```
 
-# 6. vue-router 配置
+# 6. mock 配置
+
+1. 安装依赖
+
+```shell
+pnpm install vite-plugin-mock mockjs -D
+```
+
+2. 配置插件
+
+```ts
+// 1. vite.config.ts
+import { viteMockServe } from 'vite-plugin-mock'
+
+viteMockServe({
+  enable: command === 'serve',
+  mockPath: 'mock', // 'src/mock' 也可
+  watchFiles: true
+})
+```
+
+3. 写 mock 文件
+
+```ts
+// 只需要在步骤 2 中的配置项 mockPath 的目录下写文件即可，无该配置项时默认为根目录的 mock 文件夹
+
+// 返回json数据就配置 response , 返回非 json 数据则配置 rawResponse ，具体查官网。
+// 就关注 url 和 response 正确与否，再根据 response 函数中参数 body query 即可处理基础的api请求逻辑
+
+// user.ts
+import { type MockMethod } from 'vite-plugin-mock'
+
+enum MOCK_CONFIG {
+  GET = 'get',
+  POST = 'post',
+  DEV_BASE_URL = '/v1/api'
+}
+
+export default [
+  {
+    url: MOCK_CONFIG.DEV_BASE_URL + API_URL.login,
+    method: MOCK_CONFIG.POST,
+    response: (opt: Record<string, any>) => {
+      if (opt.body.username === 'admin' && opt.body.password === '11111111') {
+        return {
+          result_state: '0',
+          result_message: 'success',
+          result: {
+            token: 'mock123'
+          }
+        }
+      } else {
+        return {
+          result_state: '400',
+          result_message: 'exception',
+          result: null
+        }
+      }
+    }
+  }
+] as MockMethod[]
+```
+
+# 7. vue-router 配置
 
 ```ts
 // src/router/index.ts
-// 没啥好讲的，就提下容易出问题的点，就是配置好了路由，一定要结合 router-view 组件使用，否则你整半天页面还是没变化
+// 前端业务的百分之六七十基本是后台管理系统， 而后台管理系统的路由一般有四个一级路由：1. 登录 2. 首页 3. 404页面 4. 任意路由。
+import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
+
+const routes: RouteRecordRaw[] = [
+  {
+    path: '/login',
+    component: () => import('@/views/login/index.vue'),
+    name: 'login'
+  },
+  {
+    path: '/',
+    component: () => import('@/views/home/index.vue'),
+    name: 'layout'
+  },
+  {
+    path: '/404',
+    component: () => import('@/views/404/index.vue'),
+    name: '404'
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/404',
+    name: 'Any'
+  }
+]
+
+export default createRouter({
+  history: createWebHistory(),
+  routes
+})
 ```
 
-# 7. 实现 svg 图标引入
+# 8. 实现 svg 图标引入
 
 1. 安装插件
 

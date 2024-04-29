@@ -10,9 +10,10 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+import { viteMockServe } from 'vite-plugin-mock'
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
+export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
   const env = loadEnv(mode, process.cwd())
   return {
     plugins: [
@@ -50,6 +51,11 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       createSvgIconsPlugin({
         iconDirs: [fileURLToPath(new URL('./src/icons', import.meta.url))],
         symbolId: 'svg-icon-[name]'
+      }),
+      viteMockServe({
+        enable: false, // command === 'serve',
+        mockPath: 'mock', // 'src/mock' 也可
+        watchFiles: true
       })
     ],
     resolve: {
