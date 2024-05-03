@@ -470,6 +470,9 @@ export default createRouter({
   history: createWebHistory(),
   routes
 })
+
+// src/plugins/patchRoute.ts
+// 把路由存储在服务端，所以把route改造成插件形式，待完善
 ```
 
 # 8. 实现 svg 图标引入
@@ -520,4 +523,17 @@ const color = computed(() => props.color || 'black')
     <use :href="symbolId" :fill="color" />
   </svg>
 </template>
+```
+
+# 9. 开发模式的启动动画和环境变量设置
+
+1. 在vite启动服务时， index.html 中被 vue 接管的 div 会有一段渲染过程， 而这过程的表现就是白屏，所以可以给 div 内部加一个默认的动画来提高开发体验。
+
+2. 因为想测试这种白屏是否在生产环境存在，所以执行 vite preview， 但发现打包报错（与commitlint相关），搜索说要设置什么环境变量，虽说最后也没解决，但是设置环境变量这个技术是广泛应用的，所以提一句。
+
+```shell
+# windows 设置变量一般是 set xxx=xxx && npm run xxx
+# unix 系统又是另一套规则
+# 但 第三方库 cross-env 可以抹平系统差异, 写在 package.json 的 scripts 中
+cross-env xx=xxx vite
 ```

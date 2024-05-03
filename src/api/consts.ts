@@ -1,3 +1,4 @@
 export default {
-  login: '/auth/login'
+  login: '/auth/login',
+  userInfoAll: '/base/user/userInfoAll'
 }

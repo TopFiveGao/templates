@@ -4,7 +4,7 @@ import type { ApiResponseData } from '@/types/api'
 
 const service = axios.create({
   baseURL: import.meta.env.VITE_APP_PROXY_PREFIX,
-  timeout: 50000,
+  timeout: 20000,
   headers: { 'Content-Type': 'application/json;charset=utf-8' }
 })
 

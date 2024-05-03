@@ -70,9 +70,10 @@
                 :size="'large'"
                 type="primary"
                 @click="submitForm(ruleFormRef)"
+                :loading="loading"
                 style="font-size: 20px"
               >
-                登录
+                {{ loadingTitle }}
               </el-button>
               <el-button
                 class="w-[30%]"
@@ -85,7 +86,6 @@
             </div>
           </el-form-item>
         </el-form>
-        <el-text>{{ txt }}</el-text>
       </el-col>
     </el-row>
   </div>
@@ -93,15 +93,19 @@
 
 <script lang="ts" setup>
 import type { FormInstance, FormRules } from 'element-plus'
-import { loginApi } from '@/api/login'
+import { getUserInfo, loginApi } from '@/api/login'
 import { useUserStore } from '@/store'
+
+const userStore = useUserStore()
 
 const canViewPassword = ref(false)
 const passwordInputType = computed(() => {
   return !canViewPassword.value ? 'password' : 'text'
 })
-const userStore = useUserStore()
-const txt = computed(() => userStore.token)
+
+const loading = ref(false)
+const loadingTitle = computed(() => (!loading.value ? '登录' : '登录中 ...'))
+
 const ruleForm = reactive({
   username: '',
   password: ''
@@ -136,17 +140,26 @@ const submitForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return
   formEl.validate(async (valid) => {
     if (valid) {
-      const data = await loginApi(ruleForm.username, ruleForm.password)
-      const token = data.result?.token
-      if (token) {
-        userStore.setToken(token)
-      } else {
-        ElMessage({
-          message: data.result_msg || '登录失败',
-          type: 'warning',
-          duration: 2000,
-          showClose: true
-        })
+      loading.value = true
+      try {
+        const data = await loginApi(ruleForm.username, ruleForm.password)
+        const token = data.result?.token
+        if (token) {
+          userStore.setToken(token)
+          const user = await getUserInfo()
+          if (user.length > 0) {
+            userStore.setInfo(user[0])
+          }
+        } else {
+          ElMessage({
+            message: data.result_msg || '登录失败',
+            type: 'warning',
+            duration: 2000,
+            showClose: true
+          })
+        }
+      } finally {
+        loading.value = false
       }
     } else {
       return false
@@ -173,7 +186,7 @@ const resetForm = (formEl: FormInstance | undefined) => {
   background-size: cover;
 }
 :deep(.el-form-item__error) {
-  font-size: 20px;
+  font-size: 18px;
   padding-top: 4px;
 }
 </style>

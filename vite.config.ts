@@ -53,7 +53,7 @@ export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
         symbolId: 'svg-icon-[name]'
       }),
       viteMockServe({
-        enable: false, // command === 'serve',
+        enable: command === 'serve',
         mockPath: 'mock', // 'src/mock' 也可
         watchFiles: true
       })
