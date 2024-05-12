@@ -95,6 +95,7 @@
 import type { FormInstance, FormRules } from 'element-plus'
 import { getUserInfo, loginApi } from '@/api/login'
 import { useUserStore } from '@/store'
+import { parseMenu } from '@/utils/parseMenu'
 
 const userStore = useUserStore()
 
@@ -149,6 +150,8 @@ const submitForm = (formEl: FormInstance | undefined) => {
           const user = await getUserInfo()
           if (user.length > 0) {
             userStore.setInfo(user[0])
+            const asyncRoutes = parseMenu(user[0].menu)
+            console.log(asyncRoutes)
           }
         } else {
           ElMessage({
@@ -178,15 +181,17 @@ const resetForm = (formEl: FormInstance | undefined) => {
   background: url('@/assets/images/background.jpg') no-repeat;
   background-size: cover;
 }
+
 .login-form {
-  width: 500px;
-  top: 35vh;
   position: relative;
+  top: 35vh;
+  width: 500px;
   background: url('@/assets/images/login_form.png') no-repeat;
   background-size: cover;
 }
+
 :deep(.el-form-item__error) {
-  font-size: 18px;
   padding-top: 4px;
+  font-size: 18px;
 }
 </style>

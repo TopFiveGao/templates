@@ -7,14 +7,13 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    BaseDialog: (typeof import('./components/dialogs/BaseDialog.vue'))['default']
     ElButton: (typeof import('element-plus/es'))['ElButton']
     ElCol: (typeof import('element-plus/es'))['ElCol']
-    ElDrawer: (typeof import('element-plus/es'))['ElDrawer']
     ElForm: (typeof import('element-plus/es'))['ElForm']
     ElFormItem: (typeof import('element-plus/es'))['ElFormItem']
     ElIcon: (typeof import('element-plus/es'))['ElIcon']
     ElInput: (typeof import('element-plus/es'))['ElInput']
-    ElRadio: (typeof import('element-plus/es'))['ElRadio']
     ElRow: (typeof import('element-plus/es'))['ElRow']
     IEpHide: (typeof import('~icons/ep/hide'))['default']
     IEpLock: (typeof import('~icons/ep/lock'))['default']
