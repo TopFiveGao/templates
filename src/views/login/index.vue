@@ -194,4 +194,8 @@ const resetForm = (formEl: FormInstance | undefined) => {
   padding-top: 4px;
   font-size: 18px;
 }
+
+.el-input .el-input__suffix-inner {
+  flex-direction: row-reverse;
+}
 </style>

@@ -3,18 +3,32 @@ import type { IDialogConfig } from '@/components/dialogs/types'
 //#region dialog 基本配置及打开、关闭事件处理
 const config = reactive<IDialogConfig>({
   title: '',
-  width: '800px',
+  width: '',
   height: '',
   draggable: true,
   closeOnClickModal: false,
   closeOnPressEscape: true,
-  isShowing: true
+  isShowing: false
 })
 
-function onClose() {}
+const emits = defineEmits<{
+  (e: 'refresh', data: any): void
+}>()
 
-function open(toggle: boolean, data: any) {
+function onClose() {
+  emits('refresh', { status: 1 })
+}
+
+function open(toggle: boolean, initConfig: any) {
   config.isShowing = toggle
+  if (toggle) {
+    config.title = initConfig.title ? initConfig.title : ''
+    config.width = initConfig.width ? initConfig.width : '800px'
+    config.height = initConfig.height ? initConfig.height : ''
+    config.draggable = initConfig.draggable ? initConfig.draggable : true
+    config.closeOnClickModal = initConfig.closeOnClickModal ? initConfig.closeOnClickModal : false
+    config.closeOnPressEscape = initConfig.closeOnPressEscape ? initConfig.closeOnPressEscape : true
+  }
 }
 
 defineExpose({

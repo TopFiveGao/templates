@@ -63,6 +63,13 @@ export default defineConfig(({ mode, command }: ConfigEnv): UserConfig => {
         '@': fileURLToPath(new URL('./src', import.meta.url))
       }
     },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@use "./src/assets/index.scss" as *;'
+        }
+      }
+    },
     server: {
       host: '0.0.0.0',
       open: true,

@@ -3,6 +3,7 @@
 ```vue
 <script setup lang="ts">
 import { Search } from '@element-plus/icons-vue'
+import DialogConfig from '@components/styler'
 /**
  *  整体分为两种, 即 【文字按钮】 和 【常规按钮】, 【文字按钮】的情况下, 样式的设置是需要处理的.
  *  1. link属性:
@@ -20,6 +21,8 @@ import { Search } from '@element-plus/icons-vue'
  *     就是 type 属性的值, 但一般没人会去适配 type 属性默认那几个风格按钮的颜色, 一般都是自己重写.
  *     查看下面的例子, 就是对【文字按钮】自定义任何颜色的最佳实践.
  *     (步骤：1. 同时设置 link 和 plain 属性; 2. 自己写个类模仿按钮的悬浮、点击、聚焦、失焦的颜色).
+ *     补充：一般按钮会有 disabled 需求，这时发现 disabled 后的文字按钮样式不对，解决方案是添加遮罩层。
+ *     最好在 scss 中修稿信息，
  *  5. 带 icon 图标的按钮的实现方式:
  *     一是用 icon 属性, 但实践发现不好用(自动导入图标的配置情况下), 文字和图标间距有些大的怪异;
  *     二是用具名插槽 #icon, 效果和第一种一样;
@@ -29,15 +32,13 @@ import { Search } from '@element-plus/icons-vue'
 
 <template>
   <el-button link plain class="btnColor">自定义任何颜色的文字按钮</el-button>
-  <el-button link plain class="btnColor">
-    <el-icon>
-      <Search />
-    </el-icon>
-    图标按钮
-  </el-button>
+  <div class="flex relative btn_container">
+    <el-button link plain class="btnColor" :disabled="disabled"> 图标按钮 </el-button>
+    <div class="btn_overlay" v-show="disabled"></div>
+  </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 /** :focus 和 :active 有权重优先级, 一定要最后定义 :active , 否则他会被 :focus 覆盖 */
 .btnColor {
   color: #00bb00;
@@ -53,6 +54,21 @@ import { Search } from '@element-plus/icons-vue'
 
 .btnColor:active {
   color: #00bb11;
+}
+
+.btnColor[disabled] {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.btn_overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: not-allowed;
 }
 </style>
 ```
@@ -164,7 +180,9 @@ function open() {
 //    close-on-click-modal: 是否可以通过点击遮罩关闭对话框，默认是 true, 通常需要设置为 false
 //    close-on-press-escape: 是否可以通过点击Esc关闭对话框，默认是 true, 通常需要设置为 false
 //    弹窗高度一般由内容撑开，但如果要让高度可控， 需要在 el-dialog 元素上写height行内样式（其他地方写无效！）
-
+//    今天在 dialog 内部写了个很长的表单，导致发现了 height 的问题，设置的 height 只能保证整个 dialog 的
+//    高度，内部的 el-dialog__body 的高度始终是有默认值的，除非单独给它设置 min-width 才能改变高度，否则会
+//    造成 el-dialog__body 的滚动。
 import { defineExpose, reactive, ref } from 'vue'
 import { ElDialog } from 'element-plus'
 
@@ -228,7 +246,7 @@ import { defineAsyncComponent, ref } from 'vue'
 
 const MyDialog = defineAsyncComponent(() => import('/src/components/MyDialog.vue'))
 // 这里要写好泛型类型，否则它的实例对象没有 openDialog 的类型提示, 记住这个泛型 InstanceType<typeof MyDialog>
-const myDialogRef = ref<InstanceType<typeof MyDialog>>(null)
+const myDialogRef = ref<InstanceType<typeof MyDialog> | null>(null)
 
 function open() {
   if (myDialogRef.value) {
@@ -242,4 +260,28 @@ function open() {
   <el-button @click="open">弹窗</el-button>
   <MyDialog :ref="(el: any) => (myDialogRef.value = el)"></MyDialog>
 </template>
+```
+
+### 4. ElInput
+
+```vue
+<script>
+/**
+ *  给 el-input 添加后缀 icon 时，发现自己做的和别人的 input 的眼睛符号在清除符号后面，
+ *  发现它用了个 show-password 属性，可是我自己写了后缀 icon，比清除符号大，只能找别的
+ *  方法看怎么把 清除符号 的位置换一下，研究半天，方案如下css.
+ *  补充一下之前的 scss 集成的bug， 当时用 scss 的方式直接引入 tailwindcss 的 样式表，
+ *  发现某些页面样式存在 bug，还是重新拆成单独的 tailwindcss 从 main.ts 引入样式表.
+ */
+</script>
+
+<template>
+  <el-input clearable></el-input>
+</template>
+
+<style scoped>
+.el-input .el-input__suffix-inner {
+  flex-direction: row-reverse;
+}
+</style>
 ```

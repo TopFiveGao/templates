@@ -250,6 +250,16 @@ module.exports = {
 
 ### 4. 调用命令
 
+常规做法是写到脚本里，推荐写到 lint-staged 中.
+
+```json
+{
+  "scripts": {
+    "lint:style": "stylelint src/**/*.{css,scss,vue,html} --fix"
+  }
+}
+```
+
 # 2. Eslint 规范
 
 ## 1. 安装依赖
