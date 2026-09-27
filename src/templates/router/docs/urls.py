@@ -6,7 +6,7 @@ from fastapi.openapi.docs import (
 )
 
 router = APIRouter()
-_prefix = __name__.split(".", 1)[1].rsplit(".", 1)[0].replace(".", "/")
+_prefix = __name__.split(".", 3)[3].rsplit(".", 1)[0].replace(".", "/")
 
 
 @router.get(path=f"/{_prefix}", include_in_schema=False)
